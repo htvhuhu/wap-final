@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    color: #626262;
+}
+#containerHeader {
+    background-color: #58614E;
+    border-bottom: 1px solid white;
+}
+.center {
+    margin: auto;
+    width: 90%;
+    max-width: 960px;  
+}
+#header {  
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu a {
+    color: #b8c6ac;
+    padding: 10px;
+    font-size: 12px;
+}
+.menu .active {
+    color: white;
+}
+.menu a:hover {
+    color: white;
+}
+#containerContent1 {
+    background-color: #E2E2E2;
+    border: 1px solid white;
+    border-bottom: 0;
+}
+#content1 {
+    border: 1px solid white;
+    border-bottom: 0;
+    margin-top: 15px;      
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E9E9E9;
+}
+#content1 .family {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+.size14 {
+    font-size: 14px;
+}
+.size20 {
+    font-size: 20px;
+}
+.size24 {
+    font-size: 24px;
+}
+.size26 {
+    font-size: 26px;
+}
+#content1 .leftContent {    
+    text-align: center;
+    margin: 5%;
+}
+
+#containerContent2 {
+    background-color: #EEEEEE;
+    border: 1px solid white;
+}
+#content2 {
+    height: 190px;    
+    display: flex;
+    justify-content: space-between;
+}
+#content2 .leftContent {
+    width: 60%;
+    padding-top: 10px;
+}
+#content2 .rightContent {
+    width: 27%;
+    border-left: 1px dotted #626262;
+    padding: 0 15px;
+}
