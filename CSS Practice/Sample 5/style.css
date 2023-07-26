@@ -1,0 +1,47 @@
+body {
+    background-color: #999999;
+}
+.header {
+    font-size: 46px;
+    color: #F4F4F4;
+    text-align: center;
+    margin: 20px;
+}
+.center {
+    margin: auto;
+    width: 80%;
+}
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+        'header header header header'
+        'left center center right'
+        'footer footer footer footer';
+    gap: 20px;
+    width: 90%;
+    max-width: 960px;
+    margin: auto;
+}
+.grid-container div {
+    background-color: #DDDDDD;
+    padding: 20px;
+}
+
+.item1 {
+    grid-area: header;
+    text-align: center;
+    font-size: 26px;
+}
+.item2 {
+    grid-area: left;
+}
+.item3 {
+    grid-area: center;
+}
+.item4 {
+    grid-area: right;
+}
+.item5 {
+    grid-area: footer;
+    padding: 10px;
+}

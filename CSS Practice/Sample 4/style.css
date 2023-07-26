@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+}
+.center {
+    margin: auto;
+    width: 70%;
+}
+.section {
+    margin-left: 20px;
+}
+.leftSection {
+    width: 30%;
+    background-color: #EFEFEF;
+}
+.rightSection {
+    width: 100%;
+}
+.header {
+    font-size: 26px;
+}
+.size16 {
+    font-size: 16px;
+}
+ul {
+    list-style: circle;
+    padding-inline-start: 30px;
+}
+li {
+    padding-bottom: 10px;
+}
+a {
+    color: deepskyblue;
+}
+.chapter {
+    margin: 10px;
+    font-size: 22px;
+}
+.footer {
+    height: 60px;
+    background-color: #666666;
+    padding-top: 1px;
+    color: white;
+    margin-top: 20px;
+}
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,94 @@
+body {
+    background-color: #202126;
+    color: white;
+}
+.container {
+    display: flex;
+}
+.container .section {
+    width: 100%;
+    padding: 10px;
+}
+.center {
+    margin: auto;
+    width: 70%;
+}
+.contactDiv {
+    display: flex;
+    align-items: center;
+}
+.contactDiv div {
+    padding: 5px;
+}
+.tweetDiv {
+    display: flex;
+    padding-bottom: 20px;
+}
+.padding-left {
+    padding-left: 20px;
+}
+.italic {
+    font-style: italic;
+}
+.instagramDiv {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2px;
+    width: 200px;
+}
+.instagramDiv img {
+    width: 100px;
+    height: 100px;
+}
+.instagramDiv div {
+    border: 1px solid white;
+    width: 100px;
+    height: 100px;
+}
+hr {
+    border: 1px solid grey;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.menu a {
+   color: white;
+   padding-right: 15px;
+   text-decoration: none;
+}
+.copyright {
+    font-size: 18px;
+}
+.emailDiv {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 5px; 
+}
+.emailDiv .email {
+    height: 36px;
+    border-radius: 20px;
+    background-color: #2A2B30;
+    border: 0;
+    padding-left: 15px;       
+    width: 250px;
+    color: #AFB0B4;
+}
+.emailDiv .send {
+    width: 80px;
+    height: 36px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #EA853A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 80px;
+}
+.grey {
+    color: #AFB0B4;
+}

@@ -1,0 +1,43 @@
+body {
+    background-color: #EFEFEF;
+}
+.container {
+    display: flex;
+    background-color: white;
+}
+.container .section {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.leftSection {
+    width: 70%;
+    margin-top: 70px;
+}
+.rightSection {
+    width: 70%;
+    margin-top: 70px;
+}
+.center {
+    margin: auto;
+    width: 70%;
+}
+.header {
+    text-align: center;
+}
+.indent {
+    position: relative;
+    left: 30px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.link {
+    margin-bottom: 5px;
+}
+.size18 {
+    font-size: 18px;
+}
+.size20 {
+    font-size: 20px;
+}
