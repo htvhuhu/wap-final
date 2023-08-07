@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.7.0.js"></script>
+    <script>
+        function makeSizer(size) {
+            return function () {
+                document.body.style.fontSize = size + "px";
+            };
+        }
+        $('document').ready(function () {
+            // document.getElementById("size-12").onclick = makeSizer(12);
+            // document.getElementById("size-16").onclick = makeSizer(16);
+            // document.getElementById("size-18").onclick = makeSizer(18);
+
+            $('#size-12').click(makeSizer(12));
+            $('#size-16').click(makeSizer(16));
+            $('#size-18').click(makeSizer(18));
+        });
+
+    </script>
+</head>
+
+<body>
+    <a href="#" id="size-12">Size 12</a>
+    <a href="#" id="size-16">Size 16</a>
+    <a href="#" id="size-18">Size 18</a>
+</body>
+
+</html>

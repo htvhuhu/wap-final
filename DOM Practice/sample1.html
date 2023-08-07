@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $('document').ready(function() {
+
+        });
+        
+        $(window).on('load', function() {
+            let div = $('#myDIV');
+            div.append($('<div id="innerDIV">aaaa</div>'));
+
+            // create table from list of flowers
+            let myList = $('ul[name="flowers"] li');
+            let mySelect = $('<select></select>');
+            $('ul').after(mySelect);
+            myList.each(function(idx, element) {
+                let jqE = $(element);
+                let optionE;
+                if (jqE.html() == "Lily") {
+                    optionE = $('<option selected>' + jqE.html() + '</option>');
+                } else {
+                    optionE = $('<option>' + jqE.html() + '</option>');
+                }                
+                mySelect.append(optionE);
+            });
+        });
+
+        
+    </script>
+</head>
+<body>
+    <div id="myDIV" class="myClass" name="myName">
+        aaa
+    </div>
+
+    <ul name="flowers">
+        <li>Rose</li>
+        <li>Lily</li>
+        <li>Ajisai</li>
+    </ul>
+
+    <table>
+        <tr>
+            <td>One</td>
+        </tr>
+        <tr>
+            <td>Two</td>
+        </tr>
+    </table>
+
+    <script>
+        let myTd = $('table tr td');
+        let flowers = $('ul[name="flowers"]');
+        myTd.each(function(idx, element) {
+            let html = $(element).html();
+            console.log(html);
+            flowers.append('<li>' + html + '</li>');
+        });
+    </script>
+
+</body>
+</html>

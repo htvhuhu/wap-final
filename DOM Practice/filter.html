@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        .filter-div input {
+            width: 100px;
+        }
+    </style>
+    <script>
+        let globalList = [
+            { name: "Ram", age: 30, skills: ["java", "javascript"] },
+            { name: "Shyam", age: 20, skills: ["python", "reactjs"] },
+            { name: "Lily", age: 25, skills: ["python"] },
+            { name: "Mary", age: 27, skills: ["nodejs"] }
+        ];
+
+        $(window).on('load', function () {
+            buildTable(globalList);
+        });
+
+        function buildTable(list) {
+            $('table').remove();
+
+            let myTable = $('<table border="1"></table>');
+
+            let isHeader = false;
+            for (let emp of list) {
+                let tr = $('<tr></tr>');
+                myTable.append(tr);
+                if (!isHeader) {
+                    let keys = Object.keys(emp);
+                    for (let k of keys) {
+                        let th = $('<th>' + k + '</th>');
+                        tr.append(th);
+                    }
+                    isHeader = true;
+                }
+                tr = $('<tr></tr>');
+                myTable.append(tr);
+                for (key in emp) {
+                    let td = $('<td>' + emp[key] + '</td>');
+                    tr.append(td);
+                }
+            }
+            $('body').append(myTable);
+        }
+
+        function filterFn() {
+            let age = $('#age').val();
+            let name = $('#name').val();
+            if (age == "" && name == "") {
+                buildTable(globalList);
+            } else {
+                let filterList = globalList.filter(emp => {
+                    if (age != "" && name != "") {
+                        return emp.age >= age && emp.name.indexOf(name) > 0;
+                    } else if (age != "") {
+                        return emp.age >= age;
+                    } else {
+                        return emp.name.indexOf(name) > 0;
+                    }
+                });
+                buildTable(filterList);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="filter-div">
+        Age <input type="text" id="age" />
+        Name <input type="text" id="name" />
+        <button onclick="filterFn()">Filter</button>
+    </div>
+    <br /><br />
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        // let obj = [{ humidity: 20, speed: 30 }, { humidity: 10, speed: 40 }];
+        let obj = [{ color: "red", flower: "rose", plant: 'Shrub' }, { color: "red", flower: "jinnia", plant: 'shrub' }];
+        
+        $('document').ready(function () {
+            let options = "";
+            let firstObj = obj[0];
+            for (let key in firstObj) {
+                options += '<option value="'+ key +'">'+ key +'</option>';
+            }
+            let html = '<select name="select1" multiple>' +
+                            options +
+                        '</select>' +
+                        '<button onclick="getValues()">Submit</button><br/><br/>';
+            $('body').append(html).append('<div id="result"></div>');
+
+        });
+
+        function getValues() {
+            $('#result').html('');
+            let options = $('select[name="select1"] option:selected');
+            for (let o of obj) {
+                for (let key in o) {
+                    options.each(function(index, elem) {
+                        if (key==$(elem).val()) {
+                            createHtml(key, o[key]);
+                        }
+                     });
+                }
+            }        
+        }
+        function createHtml(key, value) {
+            let div = $('#result');            
+            let html = '<label>' + key + '</label>'+
+                        ' <input type="text" value="' + value + '" /><br/><br/>';
+            div.append(html);
+        }
+    </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

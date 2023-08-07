@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+</head>
+<body>
+
+    <ul name="flowers">
+        <li>Rose</li>
+        <li>Lily</li>
+        <li>Ajisai</li>
+        <li>abc</li>
+    </ul>
+
+    <button id="btn" onclick="showHide(this)" >Hide</button>
+    
+    <script>
+        function showHide(btn) {
+            let jqBtn = $(btn);
+            let list = $('ul');
+            if (jqBtn.text()=='Hide') {
+                jqBtn.text('Show');
+                // list.css('display', 'none');
+                list.css('visibility', 'hidden');
+            } else {
+                jqBtn.text('Hide');
+                // list.css('display', '');
+                list.css('visibility', '');
+            }
+
+        }
+        
+
+    </script>
+
+</body>
+</html>

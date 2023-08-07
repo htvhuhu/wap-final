@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+
+    </style>
+    <script>
+        $('document').ready(function() {
+            let country = $('select[name="country"]');
+            country.change(function() {
+                console.log('fff');
+            });
+        });
+    
+    </script>
+</head>
+
+<body>
+    <select name="country" >
+        <option value="USA">United States of America</option>
+        <option value="IN">Other</option>
+    </select>
+</body>
+</html>

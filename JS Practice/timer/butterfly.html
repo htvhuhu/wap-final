@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.7.0.js"></script>
+    <style>
+        img {
+            width: 50px;
+        }
+
+        .rotated {
+            transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+        }
+    </style>
+    <script>
+        let isImgForward = true;
+        let degrees = 2;
+        let idx = 1;
+        let toogle = true;
+        setInterval(moveImage, 100);
+
+        function moveImage() {
+            // get div width
+            let screenWidth = window.innerWidth;
+            let screenHeight = window.innerHeight;
+
+            let ml = $('img').css('margin-left');
+            let mlValue = ml.substring(0, ml.indexOf("px"));
+            let mt = $('img').css('margin-top');
+            let mtValue = mt.substring(0, mt.indexOf("px"));
+
+            if (parseInt(mlValue) + 20 > parseInt(screenWidth)
+                || parseInt(mtValue) + 20 > parseInt(screenHeight)) {
+                isImgForward = false;
+                idx=1;
+            } else if ((mlValue) < 10) {
+                isImgForward = true;
+                idx=1;
+            }
+            // change image
+            if (toogle) {
+                $('img').attr('src', 'images/butterfly2.jpg');
+            } else {
+                $('img').attr('src', 'images/butterfly1.jpg');
+            }
+            toogle = !toogle;
+
+            let num = Math.random() * 10;
+            if (isImgForward) {
+                idx++;
+                $('img').css('margin-left', parseInt(mlValue) + Math.random() * 10);
+                $('img').css('margin-top', parseInt(mtValue) + Math.random() * 10);
+                rotate();
+            } else {
+                idx--;
+                $('img').css('margin-left', parseInt(mlValue) - Math.random() * 10);
+                $('img').css('margin-top', parseInt(mtValue) - Math.random() * 10);
+                rotate();
+            }
+        }
+
+        function rotate() {
+            $('img').css({
+                'transform': 'rotate(' + idx * degrees + 'deg)',
+                '-ms-transform': 'rotate(' + idx * degrees + 'deg)',
+                '-moz-transform': 'rotate(' + idx * degrees + 'deg)',
+                '-webkit-transform': 'rotate(' + idx * degrees + 'deg)',
+                '-o-transform': 'rotate(' + idx * degrees + 'deg)'
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <img src="images/butterfly1.jpg" />
+</body>
+
+</html>

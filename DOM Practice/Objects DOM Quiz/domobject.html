@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        let objectArray = [{Name:'Ram',Age:30,Skills:['java','javascript']},
+                        {Name:'Shyam',Age:20,Skills:['python','c']}];
+        
+        $('document').ready(function () {
+            let div = $('<div></div>');
+            div.append('<label>Select Student </label>');
+            let select = $('<select name="student"></select>');
+            for (let stu of objectArray) {
+                let option = '<option value="' + stu.Name + '">' + stu.Name + '</option>';
+                select.append(option);
+            }
+            div.append(select);
+            div.append(' <button onclick="showStudent()">Populate</button><br/><br/>');
+
+            let stuDiv = $('<div id="stuDiv"></div>');
+
+            let subSkillDiv = $('<div id="subSkill-div"></div>');
+            subSkillDiv.css('display', 'none');
+            subSkillDiv.append('Sub Skills' +
+                            '<select name="subSkill">' +
+                                '<option value="">Spring</option>' +
+                                '<option value="">Hibernate</option>' +
+                            '</select>');
+            let btnSubmit = '<br/><br/><button onclick="showSubSkill()">Submit</button>';
+            $('body').append(div).append(stuDiv).append(subSkillDiv).append(btnSubmit);
+        });
+   
+        function showStudent() {
+            let stuName = $('select[name="student"] option:selected').val();
+        
+            let stuArr = objectArray.filter(s => s.Name==stuName);
+            let stu = stuArr[0];
+            let html = "";
+            for (let key in stu) {
+                html += key;
+                if (Array.isArray(stu[key])) {
+                    for (let skill of stu[key]) {
+                        if (skill == 'java') {
+                            html += '<input type="checkbox" name="skill" ' +
+                            'value="'+ skill + '" onclick="hideSubSkill(this)"/>' + skill;
+                        } else {
+                            html += '<input type="checkbox" name="skill" ' +
+                                    'value="'+ skill + '"/>' + skill;
+                        }                        
+                    }
+                } else {
+                    html += '<input type="text" value="' + stu[key] + '" /><br/><br/>';
+                }
+            }       
+            $('#stuDiv').html(html);
+        }
+ 
+        function showSubSkill() {
+            let skills = $('input[name="skill"]:checked');
+            skills.each(function(index, elem) {
+                console.log("value=" + elem.value);
+                if (elem.value=="java")
+                    $('#subSkill-div').css('display', '');
+            });  
+        }
+
+        function hideSubSkill(self) {
+            console.log(self.checked);
+            if (self.checked == false) {
+                $('#subSkill-div').css('display', 'none');
+            } 
+        }
+
+    </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

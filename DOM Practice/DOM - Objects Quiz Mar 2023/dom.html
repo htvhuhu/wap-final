@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        // 1. Color the text, 'Color Me' with User eneterd text. If User enters, 'red' -> color the text to red, 'blue' -> color the text to blue.
+
+        // NOTE: If the User entered text has spelling mistakes in colors or non-existing colors, then no change occurs.
+
+        // 2.  If User enters, 'smaller' -> 'Color Me' element should be h5 instead of h4 but with same content
+
+        // 3. If User enters , 'list-rose' -> Add Unordered list with the value 'rose'.
+
+        // 'list-tulips' -> Add 'tulips'
+
+        // 'list-jasmine' -> Add 'jasmine'
+
+        // 4. Each item in the list should be added only once. If it already exists in the list , should not be added.
+        
+        function submitAction() {
+            let value = $('#row').val();
+
+            let ul = $('ul');
+            if (value=='list-rose' || value=='list-tulips' || value=='list-jasmine') {
+                let arr = value.split("-");
+                if (!isExistItem(arr[1])) {
+                    ul.append('<li>'+ arr[1] +'</li>');
+                }                
+            } else if (value=='smaller') {
+                let h4Html = $('h4').html();
+                $('h4').replaceWith('<h5>' + h4Html + '</h5>')
+            } else {
+                $('h4').css('color', value);
+            }
+        }
+        function isExistItem(value) {
+            let liList = $('ul li');
+            for (let li of liList) {
+                if ($(li).text() == value) return true;
+            }
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    Input <input id='row' type='text' />
+    <h4>Color Me</h4>
+    <input type="submit" onclick='submitAction();' value="Submit" />
+    <ul>
+
+    </ul>
+</body>
+
+</html>

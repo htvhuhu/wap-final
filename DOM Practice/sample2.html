@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+
+    <script>
+        $(window).on('load', function() {
+            let obj = [
+                {name:"Ram", Age:30, skills: ["java","javascript"]},
+                {name:"Shyam", Age:20, skills: ["python","reactjs"]},
+                {name:"Lily", Age:25, skills: ["python"]},
+                {name:"Mary", Age:27, skills: ["nodejs"]}
+            ];
+            
+            let myTable = $('<table border="1"></table>');
+
+            let isHeader = false;
+            for (let emp of obj) {
+                let tr = $('<tr></tr>');
+                myTable.append(tr);
+                if (!isHeader) {
+                    let keys = Object.keys(emp);
+                    for (let k of keys) {
+                        let th = $('<th>' + k + '</th>');
+                        tr.append(th);
+                    }
+                    
+                    isHeader = true;
+                }
+
+                tr = $('<tr></tr>');
+                myTable.append(tr);
+                for (key in emp) {
+                    let td = $('<td>' + emp[key] + '</td>');                    
+                    tr.append(td);
+                }
+            }
+            $('body').append(myTable);
+        });
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

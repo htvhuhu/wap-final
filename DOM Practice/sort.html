@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.7.0.js"></script>
+
+    <script>
+        let globalList = [
+            { name: "Ram", age: 30, skills: ["java", "javascript"] },
+            { name: "Shyam", age: 20, skills: ["python", "reactjs"] },
+            { name: "Lily", age: 25, skills: ["python"] },
+            { name: "Mary", age: 27, skills: ["nodejs"] }
+        ];
+
+        $(window).on('load', function () {
+            buildTable(globalList);
+        });
+
+        function buildTable(list) {
+            $('table').remove();
+
+            let myTable = $('<table border="1"></table>');
+
+            let isHeader = false;
+            for (let emp of list) {
+                let tr = $('<tr></tr>');
+                myTable.append(tr);
+                if (!isHeader) {
+                    let keys = Object.keys(emp);
+                    for (let k of keys) {
+                        let th = $('<th>' + k + '</th>');
+                        tr.append(th);
+                    }
+                    isHeader = true;
+                }
+                tr = $('<tr></tr>');
+                myTable.append(tr);
+                for (key in emp) {
+                    let td = $('<td>' + emp[key] + '</td>');
+                    tr.append(td);
+                }
+            }
+            $('body').append(myTable);
+        }
+
+        function sortFn() {
+            let selectedValue = $('select[name="sortBy"] option:selected').val();
+            let order = $('input[name="order"]:checked').val();
+            let filterList = globalList.slice(0);
+            if (selectedValue == "age") {
+                if (order=="asc") {
+                    filterList.sort((a, b) => a.age>b.age ? 1 : -1);
+                } else {
+                    filterList.sort((a, b) => a.age>b.age ? -1 : 1);
+                }                
+                buildTable(filterList);
+            } else if (selectedValue == "name") {
+                if (order=="asc") {
+                    filterList.sort((a, b) => a.name>b.name ? 1 : -1);
+                } else {
+                    filterList.sort((a, b) => a.name>b.name ? -1 : 1);
+                }
+                buildTable(filterList);
+            } else if (selectedValue == "skill") {
+                if (order=="asc") {
+                    filterList.sort((a, b) => a.skills>b.skills ? 1 : -1);
+                } else {
+                    filterList.sort((a, b) => a.skills>b.skills ? -1 : 1);
+                }
+                buildTable(filterList);
+            } else {
+                buildTable(globalList);
+            }            
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="sort-div">
+        Sort by
+        <select name="sortBy" onchange="sortFn()">
+            <option value=""></option>
+            <option value="age">Age</option>
+            <option value="name">Name</option>
+            <option value="skill">Skill</option>
+        </select>
+        <label for="asc">Ascending</label>
+        <input type="radio" name="order" checked value="asc" onchange="sortFn()"/>
+        <label for="asc">Descending</label>
+        <input type="radio" name="order" value="desc" onchange="sortFn()"/>
+    </div>
+    <br /><br />
+</body>
+
+</html>

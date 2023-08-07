@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        $('document').ready(function () {
+            let div = $('<div></div>');
+            div.append('<label>Select </label>');
+            div.append('<select>'
+                        + '<option value="1">Option 1</option>'
+                        + '<option value="2">Option 2</option>'
+                        + '</select> '
+                        );
+            div.append('<button onclick="show()">Show</button>');
+
+            $('body').append(div)
+                    .append('<div id="chbDiv"></div>')
+                    .append('<hr/>')
+                    .append('<button onclick="getCheckboxValue();">Submit</button>');
+
+        });
+
+        function show() {
+            let selectedValue = $('select option:selected').val();
+            $('#chbDiv').html('');
+            if (selectedValue==1) {
+                $('#chbDiv').append('<input type="checkbox" name="option1" value="A"/>A')
+                            .append('<input type="checkbox" name="option1" value="B"/>B')
+                            .append('<input type="checkbox" name="option1" value="C"/>C');
+            } else {
+                $('#chbDiv').append('<input type="checkbox" name="option1" value="D"/>D')
+                            .append('<input type="checkbox" name="option1" value="E"/>E')
+                            .append('<input type="checkbox" name="option1" value="F"/>F');
+            }
+        }
+
+        function getCheckboxValue() {
+            let selectedValue = $('input[type="checkbox"]:checked');
+            let formatValue = "";
+            selectedValue.each(function(index, elem) {
+                formatValue += elem.value + " ";
+            });
+            $('#chbDiv').html(formatValue);
+        }
+
+    </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .right {
+            padding-left: 5px;
+        }
+    </style>
+    <script>
+        let list = [{ id: 2, fname: 'John', lname: 'Doe', img: 'images/img1.jpg' },
+        { id: 4, fname: 'Maharishi', lname: 'Mahesh', img: 'images/img2.jpg' },
+        { id: 3, fname: 'Arya', lname: 'Batt', img: 'images/img3.jpg' },
+        { id: 1, fname: 'Aakash', lname: 'Chatterji', img: 'images/img4.jpg' }];
+
+        $('document').ready(function () {
+            let container = $('<div></div>');
+            container.addClass('container');
+
+            let btnSort = $('<button></button>');
+            btnSort.html('Sort');
+            btnSort.attr('onclick', 'sort()');
+            container.before(btnSort);
+
+            $('body').append(btnSort);
+            $('body').append(container);
+
+            createImg(list);
+        });
+
+        function createImg(list) {
+            let container = $('.container');
+            container.html('');
+            for (let obj of list) {
+                let box = $('<div></div>');
+                box.addClass('box');
+                let html = '<img src="'+ obj.img +'" style="width: 100px;"/>' +
+                    '<div class="right">' +
+                    '<p>'+ obj.fname +'</p>' +
+                    '<p>'+ obj.lname +'</p>' +
+                    '<button id="delete" onclick="deleteImg(this)">Delete</button>' +
+                    '</div>';
+                box.append(html);
+                container.append(box);
+            }
+        }
+
+        let sortType = "id"; // default
+        function sort() {
+            // toogle sort type
+            sortType = sortType=='id' ? 'name' : 'id';
+            console.log(sortType);
+            if (sortType=='id') {
+                list.sort((a, b) => a.id>b.id?-1:1);
+            } else {
+                list.sort((a, b) => a.fname>b.fname?1:-1);
+            }
+            console.log(list);
+            createImg(list);
+        }
+
+        function deleteImg(self) {
+            $(self).parent().parent().remove();
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

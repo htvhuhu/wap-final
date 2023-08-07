@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        div {
+            border: 1px solid red;
+            width: 100px;
+        }
+
+        label {
+            margin-left: 0px;
+        }
+
+        img {
+            width: 50px;
+        }
+    </style>
+    <script>
+        let isForward = true;
+        let isImgForward = true;
+        setInterval(moveText, 100);
+        setInterval(moveImage, 200);
+
+        function moveText() {
+            // get div width
+            let divWidth = $('div').css('width');
+            let divWidthValue = divWidth.substring(0, divWidth.indexOf("px"));
+
+            let ml = $('label').css('margin-left');
+            let mlValue = ml.substring(0, ml.indexOf("px"));
+
+            if (parseInt(mlValue) > parseInt(divWidthValue)-20) {
+                isForward = false;
+            } else if ((mlValue) < 10) {
+                isForward = true;
+            }
+            if (isForward) {
+                $('label').css('margin-left', parseInt(mlValue) + 10);
+            } else {
+                $('label').css('margin-left', parseInt(mlValue) - 10);
+            }
+        }
+
+        function moveImage() {
+            // get div width
+            let bodyWidth = $('window').css('width');
+            let bodyWidthValue = bodyWidth.substring(0, bodyWidth.indexOf("px"));
+            console.log('bodyWidthValue=', bodyWidthValue);
+
+            let ml = $('img').css('margin-left');
+            let mlValue = ml.substring(0, ml.indexOf("px"));
+            let mt = $('img').css('margin-top');
+            let mtValue = mt.substring(0, mt.indexOf("px"));
+
+            if (parseInt(mlValue) + 20 > parseInt(bodyWidth)) {
+                isImgForward = false;
+            } else if ((mlValue) < 10) {
+                isImgForward = true;
+            }
+            if (isImgForward) {
+                $('img').css('margin-left', parseInt(mlValue) + 10);
+                $('img').css('margin-top', parseInt(mtValue) + 10);
+            } else {
+                $('img').css('margin-left', parseInt(mlValue) - 10);
+                $('img').css('margin-top', parseInt(mtValue) - 10);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div><label>1</label></div>
+    <img src="images/butterfly.webp" />
+</body>
+
+</html>

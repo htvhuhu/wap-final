@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .btnDiv {
+            display: flex;
+            flex-direction: column;
+        }
+        .btnDiv button {
+            width: 30px;
+            margin-bottom: 2px;
+        }
+        select {
+            width: 50px;
+        }
+    </style>
+    <script>
+        function move2Dest(type) {
+            let sList;
+            if (type==2) {
+                // move all
+                sList = $('select[name="source"] option');
+            } else {
+                // move selected options
+                sList = $('select[name="source"] option:selected');                
+            }
+            let dList = $('select[name="dest"]');
+            dList.append(sList);
+        }
+
+        function move2Source(type) {
+            let dList
+            if (type==2) {
+                // move all
+                dList = $('select[name="dest"] option');                
+            } else {
+                // move selected options
+                dList = $('select[name="dest"] option:selected');
+            }
+            let sList = $('select[name="source"]');
+            sList.append(dList);
+        }
+
+        
+        function move(src,dest,all){
+            let query = !all? 'select[name="'+src+'"] option:checked' :'select[name="'+src+'"] option'
+            let sourceSelOptions = document.querySelectorAll(query);
+            let destination = document.querySelector('select[name="'+dest+'"]');
+            for(let each of sourceSelOptions){
+                destination.append(each);
+            }
+        }
+    
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            Source
+            <select multiple name="source">
+                <option value="1">A</option>
+                <option value="2">B</option>
+                <option value="3">C</option>
+                <option value="4">D</option>
+            </select>
+        </div>
+        <div class="btnDiv">
+            <button onclick="move2Dest(1)">></button>
+            <button onclick="move2Dest(2)">>></button>
+            <button onclick="move2Source(1)"><</button>
+            <button onclick="move2Source(2)"><<</button>
+        </div>
+        <div>
+            Destination
+            <select multiple name="dest">
+            </select>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        function changeText() {
+            // $('#myText').val("Hello");
+            $('#myText').attr("value", "Hello Me");
+        }
+
+        function checkInput() {
+            let arr = $("[name='myCheckbox']:checked").each(function() {
+                console.log(this.value);
+            });
+            for (let a of arr) 
+                console.log(a.value);
+            // arr.forEach(element => {
+            //     console.log(element.value);
+            // });
+        }
+
+        function changeMe() {
+            let div = $(".changeMe");
+            div.html("Hello Me");
+            div.css("background-color", "yellow");
+        }
+
+        function selectRadio() {
+            let a = $("[name='gender']:checked").val();
+            console.log(a);                
+        }
+    </script>
+</head>
+<body>
+    <button id="btn" onclick="changeText()">Click me</button>
+    <input type="text" value="replace me" id="myText"></input>
+    <br/><br/>
+    <label for="java">Java</label>
+    <input type="checkbox" name="myCheckbox" value="java" id="java"/>
+    <label for="js">JavaScript</label>
+    <input type="checkbox" name="myCheckbox" value="js" id="js"/>
+    <button onclick="checkInput()" >Check input</button>
+    <div style="margin-top: 20px;">
+        <div class="changeMe">Change me</div>
+        <button onclick="changeMe()">Change me</button>
+    </div>
+    <div style="margin-top: 20px;">
+        <input type="radio" name="gender" value="m" checked>Male
+        <input type="radio" name="gender" value="f">Female
+        <button onclick="selectRadio()">Select radio</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <select id="skills">
+            <option value="java">Java</option>
+            <option value="vb">VB</option>
+            <option value="cobol">Cobol</option>
+        </select>
+        <button onclick="selectRadio()">Select</button>
+    </div>
+
+</body>
+</html>

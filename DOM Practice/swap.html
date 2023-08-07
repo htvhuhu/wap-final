@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        function swapText() {
+            let nameValue = $('#name').val();
+            $('#name').val($("#alias").val());
+            $('#alias').val(nameValue);
+        }
+    </script>
+</head>
+<body>
+      <div style="margin-top: 20px;">
+        Name<input id="name" value="Name" />
+        Alias<input id="alias" value="Alias" />
+        <button onclick="swapText()">Swap</button>
+    </div>
+
+</body>
+</html>

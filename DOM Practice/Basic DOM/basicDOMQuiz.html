@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        // 1. Change Input Field to label with the User entered text.
+
+        // 2. Add the p, 'Basic DOM Quiz' inside div, "Description" as its first child.
+
+        // 4. Add 2nd row to the table with values, Ram 20, i.e.before 'Mahesh 30'
+
+        // 5. Add google link before the submit button the html
+
+        // 6. Change the background color of Submit button to yellow
+
+        function updateHtml(self) {
+            // 1. Change Input Field to label with the User entered text.
+            let inputElem = $('input[type="text"]');
+            let inputValue = inputElem.val();
+            inputElem.replaceWith('<label>' + inputValue + '</label>');
+
+            // 2. Add the p, 'Basic DOM Quiz' inside div, "Description" as its first child.
+            $('div').prepend($('p'));
+
+            // 4. Add 2nd row to the table with values, Ram 20, i.e.before 'Mahesh 30'
+            let firstTR = $('table tr:nth-child(1)');
+            let newTR = $('<tr></tr>');
+            newTR.append('<td>Ram</td><td>20</td>');
+            firstTR.after(newTR);
+            // 5. Add google link before the submit button the html
+            let google = $('<a href="http://www.google.com">Google</a>');
+            $(self).before(google);
+            // 6. Change the background color of Submit button to yellow
+            $(self).css('background-color', 'yellow');
+        }
+    </script>
+</head>
+
+<body>
+    <p>Basic DOM Quiz</p>
+    <div>Description</div>
+    <br />
+    <label>Summary </label><input type="text" />
+    <h6>Table</h6>
+    <table>
+        <tr>
+            <td> Name</td>
+            <td> Age</td>
+        </tr>
+        <tr>
+            <td> Mahesh</td>
+            <td> 30</td>
+        </tr>
+        <tr>
+            <td> Test</td>
+            <td> 10</td>
+        </tr>
+    </table>
+    <input type="button" value="Submit" onclick="updateHtml(this)" />
+</body>
+
+</html>

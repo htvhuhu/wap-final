@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>First Row Col 1</td>
+            <td>First Row Col 2</td>
+        </tr>
+        <tr>
+            <td>Second Row Col 1</td>
+            <td>Second Row Col 2</td>
+        </tr>
+    </table>
+
+    <div id="myDIV" class="myClass" name="myName">
+        myDiv
+    </div>
+    <script>
+        let table = $('table');
+        let td = $('table tr td');
+        let ul = $('<ul></ul>');
+        td.each(function(index, elem) {
+            let jqElem = $(elem);
+            // console.log(jqElem.html());
+            let li = $('<li>' + jqElem.html() + '</li>');
+            ul.append(li);
+        });
+        table.after(ul);
+        
+        // append child
+        let innerDiv = $('<div id="innerDIV"></div>');
+        innerDiv.append('<p id="firstP" > First P </p>');
+        innerDiv.append('<p id="secondP" > Second P </p>');
+        $('#myDIV').append(innerDiv);
+    </script>
+
+</body>
+</html>

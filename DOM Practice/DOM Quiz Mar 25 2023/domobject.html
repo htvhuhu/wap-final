@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <script>
+        let objs = { tags: ['div', 'label'], text: ['Welcome', 'Hello'], color: ['blue', 'red'] };
+
+        $('document').ready(function () {
+            let body = $('body');
+            for (key in objs) {
+                let value = objs[key];
+                if (key == "tags") {
+                    let option = '';
+                    for (let e of value) {
+                        option += '<option value="' + e + '">' + e + '</option>';
+                    }
+                    body.append('Select Tag ' +
+                        '<select name="tag">' +
+                        option +
+                        '</select><br/><br/>');
+                } else if (key == "text") {
+                    let option = '';
+                    for (let e of value) {
+                        option += '<input type="radio" name="text" value="' + e + '"/>' + e;
+                    }
+                    body.append('Select Text ' + option + '<br/><br/>');
+                } else if (key == "color") {
+                    let option = '';
+                    for (let e of value) {
+                        option += '<option value="' + e + '">' + e + '</option>';
+                    }
+                    body.append('Select Color ' +
+                        '<select name="color">' +
+                        option +
+                        '</select><br/><br/>');
+                }
+            }
+            body.append('<button onclick="showText()">My button</button>');
+            body.append('<span></span>');
+        });
+        
+        function showText() {
+            let tag = $('select[name="tag"] option:selected').val();
+            let text = $('input[type="radio"]:checked').val();
+            let color = $('select[name="color"] option:selected').val();
+            let container = "";
+            if (tag=='div') {
+                container = $('<div></div>');
+                container.append(text);
+                container.css('color', color);
+                $('body').append(container);          
+            } else {
+                container = $('<label></label>');
+                container.append(text);
+                container.css('color', color);
+                $('span').append(container);
+            }            
+        }
+    </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

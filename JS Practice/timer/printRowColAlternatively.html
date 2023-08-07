@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.7.0.js"></script>
+    <script>
+        
+        let obj = ['apple', 'pear', 'banana'];
+        let timerId;
+        let idx = 0;
+        let isVertical = true;
+        print();
+
+        function print() {
+            timerId = setInterval(function () {            
+            if (idx == obj.length) {
+                isVertical = !isVertical;
+                idx = 0;
+            }
+            if (isVertical) {
+                printVertical(idx);
+            } else {
+                printHorizontal(idx);
+            }
+            idx++;
+        }, 1000);
+        }
+
+        function printVertical(idx) {
+            let p = $('<div></div>');
+            p.append(obj[idx]);
+            $('#printDiv').append(p);
+        }
+
+        function printHorizontal() {
+            let p = $('<label></label>');
+            p.append(obj[idx] + " ");
+            $('#printDiv').append(p);
+        }
+
+        function stop() {
+            clearInterval(timerId);
+            $('button[name="stop"]').css('display', 'none');
+            $('button[name="resume"]').css('display', '');
+        }
+
+        function resume() {
+            $('button[name="stop"]').css('display', '');
+            $('button[name="resume"]').css('display', 'none');
+            print();
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Heading</h1>
+    <div>Printing...</div>
+    <div id="printDiv"></div>
+    <button onclick="stop()" name="stop">Stop</button>
+    <button onclick="resume()" name="resume" style="display: none;">Resume</button>
+</body>
+
+</html>

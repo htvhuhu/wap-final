@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+</head>
+<style>
+    .yellow {
+        background-color: yellow;
+    }
+    .blue {
+        background-color: blue;
+    }
+</style>
+<body>
+
+    <ul name="flowers">
+        <li>Rose</li>
+        <li>Lily</li>
+        <li>Ajisai</li>
+        <li>abc</li>
+    </ul>
+
+    <div id="test1">
+        <div class="yellow">child 1</div>
+        <div>child 2</div>
+        <div>child 3</div>
+        <div>child 4</div>
+    </div>
+    
+    <select name="mySelect" multiple>
+        <option value="1" selected>A</option>
+        <option value="2">B</option>
+        <option value="3" selected>C</option>
+    </select>
+
+    <script>
+        // let arr = $('select[name="mySelect"] option:selected');
+        // arr.each(function(index, elem) {
+        //     let e = $(elem);
+        //     console.log(e.val());
+        // })        
+
+        // $('#test1').before("<h2>New Header 1</h2>");
+        // $('#test1').after("<h2>New Header 2</h2>");
+        // $('#test1').prepend("<h2>New Header 3</h2>");
+        // $('#test1').append("<h2>New Header 4</h2>");
+
+        // $('div div:nth-child(3)').replaceWith('<h3>child 3</h3>');
+
+        console.log($('#test1').html());
+
+        // remove first li
+        // $('ul li:first-child').remove()
+
+        //remove second li
+        // $('ul[name="flowers"] li:nth-child(2)').remove();
+
+        // remove first child of div
+        // $('div div:first-child').remove();
+
+        // remove last child of div
+        // $('div div:last-child').remove();
+
+        // remove 3rd child of div
+        // $('div div:nth-child(3)').remove()
+
+        // add css class
+        // $('div div:nth-child(2)').addClass('blue');
+
+        //replace class for 1st div
+        // $('div div:first-child').removeClass('yellow').addClass('blue');
+        
+        //replace class for 1st div
+        $('div div:first-child').attr('class', 'blue');
+
+        
+
+    </script>
+
+</body>
+</html>

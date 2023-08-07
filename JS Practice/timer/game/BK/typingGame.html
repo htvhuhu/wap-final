@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        #container {
+            height: 400px;
+            width: 500px;
+            border: 1px solid;
+            display: flex;
+        }
+
+        .box {
+            border: 1px solid;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            padding: 5px;
+        }
+
+        .inputDiv {
+            margin-top: 30px;
+        }
+        button {
+            background-color: orange;
+            border: 1px solid rgb(86, 60, 11);
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        label {
+            margin-left: 10px;
+            color: red;
+        }
+    </style>
+    <script>
+        // let arr = ['fox','frog','owl','eagle','penguin'];
+        let arr = ['a', 'b', 'c', 'd'];
+        let color = ['red', 'blue', 'yellow', 'orange', 'green'];
+        let idx = 0;
+        let timerId;
+
+        function start() {
+            
+            timerId = setInterval(function () {
+                startGame();
+                if (idx == arr.length) startAnswer();
+            }, 1000);
+        }
+
+        function startGame() {
+            let divWidth = $('#container').css('width');
+            let divWidthValue = divWidth.substring(0, divWidth.indexOf("px"));
+
+            let divHeight = $('#container').css('height');
+            let divHeightValue = divHeight.substring(0, divHeight.indexOf("px"));
+
+            let ml = random(divWidthValue);
+            let mt = random(divHeightValue);
+
+            let div = $('div .box');
+            div.css('display', '');
+            div.html(arr[idx]);
+            div.css('background-color', color[randomColor()]);
+            div.css('margin-left', ml);
+            div.css('margin-top', mt);
+            idx++;
+        }
+
+        function startAnswer() {
+            clearInterval(timerId);
+
+            setTimeout(() => {
+                $('div .box').css('display', 'none');
+                $('input[name="inputText"]').prop('disabled', false);
+                window.alert("It is your time to answer. Let's go...");
+            }, 1000);
+
+            setTimeout(() => {
+                // check result
+                // console.log(arr == yourAnswer);
+                if (equal(arr, yourAnswer)) window.alert("You won!");
+                else window.alert("Try again...");
+                // clear input
+                $('input[name="inputText"]').prop('disabled', true);
+                $('#answer').html('');
+                idx = 0;
+            }, 10000);
+        }
+
+        function equal(arr, yourAnswer) {
+            for (let s of yourAnswer) {
+                let idx = arr.findIndex(a => a === s);
+                if (idx < 0) return false;
+            }
+            return true;
+        }
+
+        function randomColor() {
+            return Math.floor(Math.random() * color.length);
+        }
+
+        function random(max) {
+            let random = Math.floor(Math.random() * max);
+            if (random > max - 100) random = random - 100;
+            return random;
+        }
+
+        let yourAnswer = [];
+        function handleEnter(event, self) {
+            if (event.key == "Enter") {
+                yourAnswer.push(self.value);
+                self.value = '';
+                $('#answer').html(yourAnswer.join(", "));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <p><strong>Instruction:</strong> You will see some words displayed on the screen.</p>
+        <p>Memorize them and type your answer in the textbox below.</p>
+        <p>Type and enter for each word. You have 20 seconds to type all the words.</p>
+        <button onclick="start()">Start Game</button>
+    </div>
+    <div id="container">
+        <div class="box" style="display: none;"></div>
+    </div>
+    
+    <div class="inputDiv">
+        <label>Type here and enter </label>
+        <input type="text" name="inputText" 
+            onkeypress="handleEnter(event, this)" disabled/>
+        <label id="answer"></label>
+    </div>
+
+</body>
+
+</html>

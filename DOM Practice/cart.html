@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        table {
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid;        
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        input[type=text] {
+            width: 100px;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function add() {
+            let name = $('input[name="name"]').val();
+            let price = $('input[name="price"]').val();
+            let quantity = $('input[name="quantity"]').val();
+
+            let table = $('table');
+            let tr = $("<tr></tr>");
+
+            let tdName = $('<td for="itemName">' + name + '</td>');
+            let tdPrice = $('<td for="itemPrice">' + price + '</td>');
+            let tdQuantity = $('<td for="itemQuantity">' + quantity + '</td>');
+            let tdFunction = $('<td><button onclick="editRow(this)">Edit</button>' + 
+                            ' <button onclick="deleteRow(this)">Delete</button></td>');
+            tr.append(tdName);
+            tr.append(tdPrice);
+            tr.append(tdQuantity);
+            tr.append(tdFunction);
+            
+            table.append(tr);
+        }
+
+        function editRow(self) {
+            let tr = $(self).parent().parent();
+            let jqtd = $(tr).children();
+            jqtd.each(function(index, elem) {
+                let jqElem = $(elem);
+                if (index==0) {
+                    $('input[name="name"]').val(jqElem.text().trim());
+                } else if (index==1) {
+                    $('input[name="price"]').val(jqElem.text().trim());
+                } else if (index==2) {
+                    $('input[name="quantity"]').val(jqElem.text().trim());
+                }
+            });
+        }
+
+        function deleteRow(self) {
+            let tr = $(self).parent().parent();
+            tr.remove();
+        }
+
+        function clearForm() {
+            let inputItem = $('input[type="text"]');
+            inputItem.val('');
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        Name <input type="text" name="name" />
+        Price <input type="text" name="price" />
+        Quantity <input type="text" name="quantity" />
+        <button onclick="add()">Add</button>
+        <button onclick="clearForm()">Clear</button>
+    </div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Function</th>
+        </tr>
+    </table>
+</body>
+</html>
