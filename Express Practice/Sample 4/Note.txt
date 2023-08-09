@@ -1,0 +1,23 @@
+1. Show index.html on landing Page('/').
+
+2. When Users enters the data and submits the page
+
+a.   If User enters anything other than number in the text field, show index.html
+
+b.  If User enters odd number and selects 'Even'  OR User enters even number and selects 'Odd' display Error Page ( Error handler should display)
+
+c. For right data, i.e. Even number with even selection and odd Number with odd selection, display history.
+
+History  should be displayed in this fashion, lets say inputs are 
+
+2  Even, 3  Odd, 5 Odd, 6 Even 
+
+{ 2:'Even', 3: 'Odd', 5:'Odd', 6:'Even'} 
+
+ORDER doesnt matter
+
+NOTE: All Code in server, no client-side javascript
+
+routes in separate file,
+use post-redirect pattern
+The History should be stored in separate new file, neither in routes and nor in  server file.
