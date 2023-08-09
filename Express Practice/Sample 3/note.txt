@@ -1,0 +1,20 @@
+Question 1 of 1	0 Points
+1. Show login.html on landing url('/')
+
+2. When User enters either guest/guest or owner/owner as username/password, show view.html
+
+2 b. If Login is unsuccessful, show Error Page.
+
+3. When the Category is selected, check if the User has the role to view the page
+
+let myArray = {guest:['Nuts',"Legumes"],
+
+owner:['Vegetables','Nuts','Fruits',"Legumes"]}
+
+a. If the User has access, show the message, "welcome to "<category>
+
+b. If the User doesnt have access, show 'Unauthorized'
+
+4. Show '404' when the User tries to request any other url than what server has
+
+5. Use multiple post handlers for showing the 3a. where one handler checks if the User has access to the page and the other will actually show the page. 
