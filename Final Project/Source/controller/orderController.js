@@ -1,10 +1,7 @@
-let model = require('../model/order');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 const connection = require('../dbConnector');
 const dbHelper = require('../helper/dbHelper');
-
-let listOrder = []; 
 
 module.exports.showIndexPage = (req, res, next) => {
     let orderItems = [
