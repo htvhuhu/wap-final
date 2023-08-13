@@ -34,8 +34,12 @@ VALUES
 
 **Install dependency to connect to mySQL**
 
-npm i mysql2
+npm i mysql
 
 npm install express-session
 
+** ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+Execute the following query in MYSQL Workbench
 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+flush privileges;
