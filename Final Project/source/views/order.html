@@ -30,15 +30,15 @@
                         <tr id="row-<%= index %>">
                             <!-- ... (rest of the row structure) ... -->
                             <!-- Hidden input fields for each row -->
-                            <input type="hidden" name="items[<%= index %>][dish_id]" value="<%= item.dish.id %>">
-                            <input type="hidden" name="items[<%= index %>][name]" value="<%= item.dish.name %>">
+                            <input type="hidden" name="items[<%= index %>][dishId]" value="<%= item.dishId %>">
+                            <input type="hidden" name="items[<%= index %>][dishName]" value="<%= item.dishName %>">
                             <input type="hidden" name="items[<%= index %>][quantity]" id="input-quantity-<%= index %>"
                                 value="<%= item.quantity %>">
-                            <input type="hidden" name="items[<%= index %>][price]" value="<%= item.dish.price %>">
-                            <% total +=item.dish.price * item.quantity; %>
-                                <td><img src='<%= item.dish.image_url %>' class="dish-image"></td>
+                            <input type="hidden" name="items[<%= index %>][price]" value="<%= item.price %>">
+                            <% total +=item.price * item.quantity; %>
+                                <td><img src='<%= item.dishImageURL %>' class="dish-image"></td>
                                 <td>
-                                    <%= item.dish.name %>
+                                    <%= item.dishName %>
                                 </td>
                                 <td>
                                     <button onclick="decreaseQuantity(<%= index %>);return false;">-</button>
@@ -48,10 +48,10 @@
                                     <button onclick="increaseQuantity(<%= index %>);return false;">+</button>
                                 </td>
                                 <td id="price-<%= index %>">
-                                    <%= item.dish.price %>
+                                    <%= item.price %>
                                 </td>
                                 <td id="total-<%= index %>">
-                                    <%= item.dish.price * item.quantity %>
+                                    <%= item.price * item.quantity %>
                                 </td>
                                 <td>
                                     <a onclick="deleteItem(<%= index %>)"><span class="bi bi-trash"></span></a>
@@ -82,9 +82,8 @@
 
                 <label for="phone">Phone:</label>
                 <input type="tel" id="phone" name="phone" required>
-                <input type="hidden" name="orderId" value="<%= id %>"> <!-- Assuming you have the order ID available -->
+                
                 <input type="hidden" id="grandTotal" name="totalPrice" value="<%= total %>">
-                <!-- Assuming you have the order ID available -->
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required> <!-- Email input for sending confirmation -->

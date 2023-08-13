@@ -10,4 +10,6 @@ orderRouter.get('/complete/:id',controller.showCompleteOrder);
 
 orderRouter.post('/updateOrder',controller.updateOrder);
 
+orderRouter.get('/addOrder',controller.addOrder);
+
 module.exports = orderRouter;
