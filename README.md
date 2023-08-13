@@ -16,3 +16,6 @@ ADD COLUMN `dishImageURL` VARCHAR(255) NULL AFTER `catId`;
 Install dependency to connect to mySQL
 npm i mysql2
 
+npm install express-session
+
+
