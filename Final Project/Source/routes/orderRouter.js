@@ -1,5 +1,6 @@
 const express = require('express');
-const controller = require('./orderController')
+const controller = require('../controller/orderController');
+
 const orderRouter = express.Router();
 
 orderRouter.get('/',controller.showIndexPage);
