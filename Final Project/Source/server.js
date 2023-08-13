@@ -8,7 +8,7 @@ const app = express();
 
 // setup body parser
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 // app.use(cookieparser());
 app.use(cookieparser('keyforencription'));
 
