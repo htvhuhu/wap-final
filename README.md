@@ -2,16 +2,14 @@
 Download mySQL
 https://dev.mysql.com/downloads/installer/
 
-DB Script
+**DB Script**
 https://github.com/butbuiapp/wap/tree/main/Final%20Project/Database
 
-Update tables
+**Update tables**
 ALTER TABLE `restaurant`.`orderdetail` RENAME TO `restaurant`.`order_detail`;
-
 ALTER TABLE `restaurant`.`dish` ADD COLUMN `dishImageURL` VARCHAR(255) NULL AFTER `catId`;
 
-Create data dummy for dish
-
+**Create data dummy for dish**
 INSERT INTO `restaurant`.`dish` 
 (`id`, `name`, `description`, `price`, `ingredients`, `catId`, `image_url`) 
 VALUES 
@@ -27,7 +25,7 @@ VALUES
 (10, 'Chả Giò', 'Vietnamese fried spring roll made with ground meat and wrapped in rice paper.', 5.49, 'Ground pork, shrimp, mushrooms, rice paper, vermicelli', 10, NULL);
 
 
-Install dependency to connect to mySQL
+**Install dependency to connect to mySQL**
 npm i mysql2
 
 npm install express-session
