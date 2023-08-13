@@ -23,8 +23,11 @@ app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 
 // setup route
+app.get('/', (req, res, next) => {
+    res.redirect('/index');
+});
 const homeRouter = require('./routes/homeRouter');
-app.use('/', homeRouter);
+app.use('/index', homeRouter);
 
 const menuRouter = require('./routes/menuRouter');
 app.use('/menu', menuRouter);
