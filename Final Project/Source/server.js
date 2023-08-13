@@ -6,9 +6,18 @@ const cookieparser = require('cookie-parser');
 const port = 3000;
 const app = express();
 
+
+const session = require('express-session');
+app.use(session({
+    secret: 'your_secret_key',  // This should be a long random string
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }  // Set to true if using HTTPS
+}));
+
 // setup body parser
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true})); // need true for parsing JSON
 // app.use(cookieparser());
 app.use(cookieparser('keyforencription'));
 

@@ -1,99 +1,159 @@
 let model = require('../model/order');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
+const connection = require('../dbConnector');
+const dbHelper = require('../helper/dbHelper');
 
 let listOrder = []; 
 
 module.exports.showIndexPage = (req, res, next) => {
-    res.render('order',model);
+    let orderItems = [
+        {
+            dishId: 1,
+            quantity: 5
+        },
+        {
+            dishId: 2,
+            quantity: 7
+        }
+    ]
+
+    orderItems = req.session.orderItems ?? orderItems;
+
+    dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
+        orderItems = orderItems.map(o=>{
+            let dish = ds.filter(d=>d.dishId === o.dishId)[0];
+            return {...o,...dish};
+        });
+        console.log(orderItems);
+        res.render('order',{orderItems:orderItems});
+    });
 }
 
-module.exports.completeOrder = (req, res, next) => {
-    completeOrder(req, res, next);
+module.exports.addOrder = (req, res) => {
+    let orderItems = [
+        {
+            dishId: 1,
+            quantity: 99
+        },
+        {
+            dishId: 2,
+            quantity: 100
+        }
+    ];
+
+    // Save orderItems to session
+    req.session.orderItems = orderItems;
+    res.redirect("/order");
 }
+
 module.exports.updateOrder = (req, res, next) => {
     console.log(req.body);
     saveOrder(req, res, next);
 }
 
+module.exports.completeOrder = (req, res, next) => {
+    completeOrder(req, res, next);
+}
+
 module.exports.showCompleteOrder = (req, res, next) =>{
-    let detail = listOrder.filter(order => order.orderId === req.params.id)[0];
-    console.log(detail);
-    res.render('orderComplete', detail);
+    const orderId = req.params.id;
+
+    var order ={};
+    var orderItems =[];
+    var dishes =[];
+    dbHelper.fetchDataFromTable("order","ordId", orderId).then(ord => {
+        order = ord[0];
+        dbHelper.fetchDataFromTable("order_detail","ordId", orderId).then(ordItems => {
+            orderItems = ordItems;
+            
+            dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
+                dishes = ds;
+                const orderDetails = {
+                    ordId: order.ordId,
+                    ordName: order.ordName,
+                    orderItems: orderItems.map(item => {
+                        return {
+                            dishName: dishes.filter(d=>d.dishId === item.dishId)[0].dishName,
+                            price: item.price,
+                            quantity: item.quantity
+                        }
+                    }),
+                    totalPrice: order.totalPrice,
+                    ordAddress: order.ordAddress,
+                    ordPhone: order.ordPhone,
+                    ordEmail: order.ordEmail,
+                    ordDate: order.ordDate,
+                };
+            
+                // 3. Render the EJS template
+                console.log("orderComplete", orderDetails);
+                res.render('orderComplete', orderDetails);
+            });
+        });
+    });
 }
 
 let saveOrder = (req, res, next) => {
-    // const orderData = {
-    //     user_name: req.body.name,
-    //     address: req.body.address,
-    //     phone: req.body.phone,
-    //     email: req.body.email,
-    //     status: 'saved'
-    // };
+    return new Promise((resolve, reject) => {
+        const orderData = {
+            ordName: req.body.name,
+            ordDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            ordAddress: req.body.address,
+            ordPhone: req.body.phone,
+            ordEmail: req.body.email,
+            totalPrice: req.body.totalPrice
+        };
 
-    // Insert the order into the database
-    // connection.query('INSERT INTO orders SET ?', orderData, (err, result) => {
-    //     if (err) {
-    //         res.status(500).send("Internal Server Error");
-    //         return;
-    //     }
+        // Insert the order into the database
+        // INSERT INTO `restaurant`.`order` (`ordId`, `ordDate`, `ordName`, `ordAddress`, `ordPhone`, `ordEmail`, `totalPrice`) 
+        //VALUES (<{ordId: }>, <{ordDate: }>, <{ordName: }>, <{ordAddress: }>, <{ordPhone: }>, <{ordEmail: }>, <{totalPrice: }>);
+        connection.query('INSERT INTO `order` SET ?', [orderData], (err, result) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
 
-    //     const orderId = result.insertId;
-    //     const orderItems = req.body.orderItems.map(item => [orderId, item.dish_name, item.quantity, item.price]);
-
-    //     // Insert the associated order items into the database
-    //     connection.query('INSERT INTO order_items (order_id, dish_name, quantity, price) VALUES ?', [orderItems], (err) => {
-    //         if (err) {
-    //             res.status(500).send("Internal Server Error");
-    //             return;
-    //         }
-    //     });
-    // });
+            
+            var orderId = result.insertId;
+            const orderItems = req.body.items.map(item => [orderId.toString(), item.dishId, item.price, item.quantity]);
+            // Insert the associated order items into the database
+            // INSERT INTO `restaurant`.`orderdetail` (`odId`, `ordId`, `dishId`, `price`, `quantity`) 
+            // VALUES (<{odId: }>, <{ordId: }>, <{dishId: }>, <{price: }>, <{quantity: }>);
+            connection.query('INSERT INTO `restaurant`.`order_detail` (`ordId`, `dishId`, `price`, `quantity`) VALUES ?', 
+                                    [orderItems], (err) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).send("Internal Server Error");
+                    return;
+                }
+            });      
+            resolve(orderId);
+        });
+});
 }
 
 let completeOrder = (req,res,next) => {
-    saveOrder(req, res, next);
-    // Update the order's status to 'complete' in the database
-    // connection.query('UPDATE orders SET status = ? WHERE id = ?', ['complete', orderId], (err) => {
-    //     if (err) {
-    //         res.status(500).send("Internal Server Error");
-    //         return;
-    //     }
+    saveOrder(req, res, next).then(id => {
+        console.log("orderId",id);
+        var orderId = id
+        
+        console.log("orderId",orderId);
+        
+        const orderDetails = {
+            orderId: orderId,
+            ordName: req.body.name,
+            orderItems: req.body.items,
+            totalPrice: req.body.totalPrice,
+            ordAddress: req.body.address,
+            ordPhone: req.body.phone
+        };
+        
+        sendConfirmationEmail(req.body.email, orderDetails);
 
-    //     // Optionally, send a confirmation email
-    //     const orderDetails = {
-    //         userName: req.body.name,
-    //         orderItems: req.body.orderItems,
-    //         totalPrice: total_price,
-    //         address: req.body.address,
-    //         phone: req.body.phone
-    //     };
-    //     sendConfirmationEmail(req.body.email, orderDetails);
-    // });
-    
-    // Optionally, send a confirmation email
-    const orderDetails = {
-        orderId: req.body.orderId,
-        userName: req.body.name,
-        orderItems: req.body.items,
-        totalPrice: req.body.totalPrice,
-        address: req.body.address,
-        phone: req.body.phone
-    };
-    let existOrders = listOrder.filter(n=>n.orderId === req.body.orderId);
-    if(existOrders.length == 0) {
-        listOrder.push(orderDetails);
-    }else{
-        let index = listOrder.indexOf(existOrders[0]);
-        while (index > -1 && listOrder.filter(n=>n.orderId === req.body.orderId).length > 0) { // only splice array when item is found
-            listOrder.splice(index, 1); // 2nd parameter means remove one item only
-            index = listOrder.indexOf(listOrder.filter(n=>n.orderId === req.body.orderId)[0])
-        }
-        listOrder.push(orderDetails);
-    }
-    sendConfirmationEmail(req.body.email, orderDetails);
-
-    res.redirect('/order/complete/'+req.body.orderId);
+        res.redirect('/order/complete/'+orderId);
+    });
 }
 
 

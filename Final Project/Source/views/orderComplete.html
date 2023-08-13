@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <h1>Order Confirmation</h1>
-        <p>Thank you for your order, <strong><%= userName %></strong>!</p>
+        <p>Thank you for your order, <strong><%= ordName %></strong>!</p>
 
         <h2>Order Details</h2>
         <table class="table table-bordered table-striped">
@@ -47,7 +47,7 @@
             <tbody>
                 <% orderItems.forEach(item => { %>
                     <tr>
-                        <td><%= item.name %></td>
+                        <td><%= item.dishName %></td>
                         <td><%= item.quantity %></td>
                         <td><%= item.price %></td>
                         <td><%= item.price * item.quantity %></td>
@@ -56,8 +56,8 @@
             </tbody>
         </table>
         <p><strong>Total Price:</strong> <%= totalPrice %></p>
-        <p><strong>Shipping Address:</strong> <%= address %></p>
-        <p><strong>Phone:</strong> <%= phone %></p>
+        <p><strong>Shipping Address:</strong> <%= ordAddress %></p>
+        <p><strong>Phone:</strong> <%= ordPhone %></p>
     </div>
 </body>
 
