@@ -1,0 +1,43 @@
+.img-div {
+    background: url('../images/reservation-img.webp');
+    height: 300px;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.reservation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30px;
+}
+.reservationDateTime, .contactDetail {
+    width: 30%;
+}
+.reservation input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 1rem;
+    font-size: 1rem;
+    line-height: 2.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.reservation div {
+    margin: 20px;
+}
+.reserve-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}

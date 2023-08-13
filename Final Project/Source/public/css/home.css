@@ -1,0 +1,33 @@
+.img-div {
+    background: url('../images/home-img.webp');
+    height: 300px;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.introduce {
+    padding: 50px;
+    display: flex;
+}
+.introduce img {
+    width: 300px;
+}
+
+.introduce .welcome {
+    padding: 0 40px;
+    width: 50%;
+    text-align: center;
+}
+.opening-hours .text {
+    border-bottom: 1px dashed rgba(207,166,113,0.5);
+    padding-bottom: 10px;
+}
+.opening-hours li {
+    padding: 10px;
+}
