@@ -17,7 +17,6 @@ module.exports.updateOrder = (req, res, next) => {
 }
 
 module.exports.showCompleteOrder = (req, res, next) =>{
-    console.log(req.params);
     let detail = listOrder.filter(order => order.orderId === req.params.id)[0];
     console.log(detail);
     res.render('orderComplete', detail);
@@ -73,19 +72,26 @@ let completeOrder = (req,res,next) => {
     // });
     
     // Optionally, send a confirmation email
-    console.log(req.body.items);
-    console.log(req.body); 
-        const orderDetails = {
-            orderId: req.body.orderId,
-            userName: req.body.name,
-            orderItems: req.body.items,
-            totalPrice: req.body.totalPrice,
-            address: req.body.address,
-            phone: req.body.phone
-        };
-        
+    const orderDetails = {
+        orderId: req.body.orderId,
+        userName: req.body.name,
+        orderItems: req.body.items,
+        totalPrice: req.body.totalPrice,
+        address: req.body.address,
+        phone: req.body.phone
+    };
+    let existOrders = listOrder.filter(n=>n.orderId === req.body.orderId);
+    if(existOrders.length == 0) {
         listOrder.push(orderDetails);
-        sendConfirmationEmail(req.body.email, orderDetails);
+    }else{
+        let index = listOrder.indexOf(existOrders[0]);
+        while (index > -1 && listOrder.filter(n=>n.orderId === req.body.orderId).length > 0) { // only splice array when item is found
+            listOrder.splice(index, 1); // 2nd parameter means remove one item only
+            index = listOrder.indexOf(listOrder.filter(n=>n.orderId === req.body.orderId)[0])
+        }
+        listOrder.push(orderDetails);
+    }
+    sendConfirmationEmail(req.body.email, orderDetails);
 
     res.redirect('/order/complete/'+req.body.orderId);
 }

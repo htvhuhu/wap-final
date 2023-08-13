@@ -83,7 +83,7 @@
                 <label for="phone">Phone:</label>
                 <input type="tel" id="phone" name="phone" required>
                 <input type="hidden" name="orderId" value="<%= id %>"> <!-- Assuming you have the order ID available -->
-                <input type="hidden" name="totalPrice" value="<%= total %>">
+                <input type="hidden" id="grandTotal" name="totalPrice" value="<%= total %>">
                 <!-- Assuming you have the order ID available -->
 
                 <label for="email">Email:</label>
@@ -136,6 +136,7 @@
 
         function updateGrandTotal() {
             const grandTotalElem = document.getElementById('grandTotal');
+            const grandTotalHiddenInput = document.getElementsByName('totalPrice')[0];
             let grandTotal = 0;
 
             document.querySelectorAll('[id^="total-"]').forEach(totalElem => {
@@ -143,6 +144,7 @@
             });
 
             grandTotalElem.innerText = grandTotal.toFixed(2);
+            grandTotalHiddenInput.value = grandTotal.toFixed(2);
         }
 
         function deleteItem(index) {
