@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Order Confirmation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/order.css">
+    <style>
+        body {
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        p {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your order, <strong><%= userName %></strong>!</p>
+
+        <h2>Order Details</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Dish Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orderItems.forEach(item => { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.price * item.quantity %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <p><strong>Total Price:</strong> <%= totalPrice %></p>
+        <p><strong>Shipping Address:</strong> <%= address %></p>
+        <p><strong>Phone:</strong> <%= phone %></p>
+    </div>
+</body>
+
+</html>

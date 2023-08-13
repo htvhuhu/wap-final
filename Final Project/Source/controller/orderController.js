@@ -1,5 +1,4 @@
-let model = require('./orderModel');
-
+let model = require('../model/order');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 
@@ -21,7 +20,7 @@ module.exports.showCompleteOrder = (req, res, next) =>{
     console.log(req.params);
     let detail = listOrder.filter(order => order.orderId === req.params.id)[0];
     console.log(detail);
-    res.render('email-order', detail);
+    res.render('orderComplete', detail);
 }
 
 let saveOrder = (req, res, next) => {
@@ -94,7 +93,7 @@ let completeOrder = (req,res,next) => {
 
 
 function sendConfirmationEmail(email, orderDetails) {
-    ejs.renderFile(__dirname + "/views/email-order.html", orderDetails, function (err, data) {
+    ejs.renderFile(__dirname + "/views/orderComplete.html", orderDetails, function (err, data) {
         if (err) {
             console.log(err);
             return;
