@@ -93,7 +93,7 @@ let completeOrder = (req,res,next) => {
 
 
 function sendConfirmationEmail(email, orderDetails) {
-    ejs.renderFile(__dirname + "/views/orderComplete.html", orderDetails, function (err, data) {
+    ejs.renderFile(__dirname +"/.."+ "/views/orderComplete.html", orderDetails, function (err, data) {
         if (err) {
             console.log(err);
             return;
