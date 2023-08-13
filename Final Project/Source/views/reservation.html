@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/reservation.css"/>
+</head>
+<body>
+    <header>
+        <%- include('./header.html') %>
+    </header>   
+    <div class="img-div">
+        <h3>Reservation</h3>
+    </div>
+    <div class="reservation">
+        <div class="reservationDateTime">
+            <h3>Book a table</h3>
+            <div><input type="text" name="date" placeholder="Select date"/></div>
+            <div><input type="text" name="time" placeholder="Select time"/></div>
+            <div><input type="text" name="noOfPerson" placeholder="Select person"/></div>
+        </div>
+        <div class="contactDetail">
+            <h3>Contact Details</h3>
+            <div><input type="text" name="name" placeholder="Your Name"/></div>
+            <div><input type="text" name="email" placeholder="Your Email"/></div>
+            <div><input type="text" name="phone" placeholder="Your Phone"/></div>
+        </div>
+    </div>
+    <div class="reserve-btn">
+        <input type="button" name="reservation" value="Reservation" class="button"/>
+    </div>
+    <footer>
+        <%- include('./footer.html') %>
+    </footer>
+</body>
+</html>

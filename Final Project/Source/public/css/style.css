@@ -1,0 +1,111 @@
+body {
+    font-family: 'Athiti',sans-serif;
+    font-size: 15px;
+    color: #666666;
+}
+.center {
+    margin: auto;
+    width: 80%;
+    max-width: 960px;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-container a {
+    text-decoration: none;
+}
+.header-container .leftHeader img {
+    width: 100%;
+}
+
+.header-container .rightHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+}
+.navbar li {
+    margin: 10px;
+}
+.navbar li a {
+    color: #666666;
+    padding: 6px 12px;
+    border-radius: 4px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+.navbar li a:hover {
+    background: #d0a772;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.navbar li .active {
+    background: #d0a772;
+    color: #666666;
+    color: white;
+}
+.contact  {
+    background-color: #d0a772;
+    height: 30px;
+    color: white;
+    display: flex;
+    padding: 30px;
+    border-bottom: 1px solid white;
+    align-items: center;
+    justify-content: space-around;
+}
+.contact .column {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    gap: 15px;
+}
+.contact img {
+    width: 40px;
+}
+
+.footer {
+    padding: 30px;
+    background-color: #010101;
+    border-top: 1px dashed rgba(207,166,113);
+    text-align: center;
+}
+.button {
+    background-color: #d0a772;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: inline-block;
+    padding: 0 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+.button:hover {
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: inline-block;
+    padding: 0 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}

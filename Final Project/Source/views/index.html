@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/home.css"/>
+</head>
+<body>
+    <header>
+        <%- include('./header.html') %>
+    </header>
+    <div class="img-div">
+        <h3>Welcome to <br/>Vietnamese restaurant</h3>
+    </div>
+    <div class="introduce">
+        <div><img src="images/home-pho.jpg" ></div>
+        <div class="welcome">
+            <h1>Welcome to Vietnamese restaurant</h1>
+            Traditional Vietnamese cooking has often been characterised as using fresh ingredients, not using much dairy or oil, having interesting textures, and making use of herbs and vegetables. The cuisine is also low in sugar and is almost always naturally gluten-free, as many of the dishes are rice-based instead of wheat-based, made with rice noodles, papers and flour.
+        </div>
+        <div class="opening-hours">
+            <label class="text">OPENING HOURS</label>
+            <ul>
+                <li>Monday:Closed</li>
+                <li>Tue-Wed : 9:Am - 10PM</li>
+                <li>Thu-Fri : 9:Am - 10PM</li>
+                <li>Sat-Sun : 5:PM - 10PM</li>
+            </ul>
+            <div>
+                <input type="button" name="reservation" 
+                    value="Reservation" class="button" onclick="window.location='reservation.html'"/>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <%- include('./footer.html') %>
+    </footer>
+</body>
+</html>
