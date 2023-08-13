@@ -11,10 +11,14 @@ https://github.com/butbuiapp/wap/tree/main/Final%20Project/Database
 ALTER TABLE `restaurant`.`orderdetail` RENAME TO `restaurant`.`order_detail`;
 ALTER TABLE `restaurant`.`dish` ADD COLUMN `dishImageURL` VARCHAR(255) NULL AFTER `catId`;
 
+ALTER TABLE `restaurant`.`dish` CHANGE COLUMN `discription` `description` VARCHAR(500) NULL DEFAULT NULL ;
+ALTER TABLE `restaurant`.`dish` CHANGE COLUMN `ingredient` `ingredients` VARCHAR(100) NULL DEFAULT NULL ;
+
+
 **Create data dummy for dish**
 
 INSERT INTO `restaurant`.`dish` 
-(`id`, `name`, `description`, `price`, `ingredients`, `catId`, `image_url`) 
+(`dishid`, `dishname`, `description`, `price`, `ingredients`, `catId`, `dishImageURL`) 
 VALUES 
 (1, 'Phở', 'A Vietnamese noodle soup consisting of broth, rice noodles, and meat, primarily beef or chicken.', 10.99, 'Rice noodles, beef slices, onions, ginger, beef bone broth', 1, './images/pho.jpg'),
 (2, 'Bánh Mì', 'A Vietnamese sandwich that consists of a French baguette filled with a variety of ingredients.', 5.99, 'Baguette, pork, pickled vegetables, pâté, cilantro, chili', 2, './images/banhmi.jpg'),
