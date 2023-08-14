@@ -1,8 +1,8 @@
 const db = require('../dbConnector');
+const DateTimeHelper =  require("../helper/dateTimeHelper");
 
 class Reservation {
-    constructor(resId, resDateTime, noOfPerson, cusName, cusEmail, cusPhone) {
-        this.resId = resId;
+    constructor(resDateTime, noOfPerson, cusName, cusEmail, cusPhone) {
         this.resDateTime = resDateTime;
         this.noOfPerson = noOfPerson;
         this.cusName = cusName;
@@ -12,28 +12,20 @@ class Reservation {
 
     static addReservation(reservation) {
         return new Promise((resolve, reject) => {
-            const resObj = {
-                resDateTime: new Date(),
-                noOfPerson: reservation.noOfPerson,
-                cusName: reservation.cusName,
-                cusEmail: reservation.cusEmail,
-                cusPhone: reservation.cusPhone
-            };
-            let QUERY = 'INSERT INTO reservation(' +
-                'resDateTime, ' +
-                'noOfPerson, ' +
-                'cusName, ' +
-                'cusEmail, ' +
-                'cusPhone)' +
-                'VALUES (?)';
-            db.query(QUERY, [resObj]).then(rows => {
-                // do something with the result
+            const newRes = new Reservation(
+                DateTimeHelper.createDate(reservation.resDate, reservation.resTime), 
+                reservation.noOfPerson,
+                reservation.cusName,
+                reservation.cusEmail,
+                reservation.cusPhone
+        );
+            let QUERY = 'INSERT INTO reservation SET ? ';
+            db.query(QUERY, newRes).then(result => {
+                resolve(result);
             }).catch(err => {
-                throw new Error(err.message);
+                reject(err);
             });
-
         });
-
     }
 }
 

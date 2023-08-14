@@ -6,6 +6,6 @@ router.get('/', (req, res, next) => {
     res.render('reservation');
 });
 
-router.post('/', controller.validate, controller.saveReservation);
+router.post('/', controller.saveReservation);
 
 module.exports = router;
