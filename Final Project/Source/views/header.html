@@ -5,11 +5,23 @@
         </div>
         <div class="rightHeader">
             <ul class="navbar">
-                <li><a href="/index" class="active">Home</a></li>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="/reservation">Reservation</a></li>
-                <li><a href="/order">Your Order</a></li>
+                <li><a href="/index" id="index" class="active">Home</a></li>
+                <li><a href="/menu" id="menu">Menu</a></li>
+                <li><a href="/reservation" id="reservation">Reservation</a></li>
+                <li><a href="/order" id="order">Order</a></li>
             </ul>
         </div>
     </div>
 </div>
+<script>
+        const pathArray = window.location.pathname.split('/');
+        const firstLevelPath = pathArray[1];
+        console.log(firstLevelPath);
+        const activeElements = document.getElementsByClassName('active');
+
+        Array.from(activeElements).forEach(element => {
+            element.classList.remove('active');
+        });
+
+        document.getElementById(firstLevelPath).classList.add('active');
+</script>

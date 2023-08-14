@@ -85,7 +85,7 @@ body {
     border-top: 1px dashed rgba(207,166,113);
     text-align: center;
 }
-.button {
+.button, form input[type="submit"], a .bi-trash {
     background-color: #d0a772;
     color: #fff;
     font-size: 16px;
@@ -97,7 +97,7 @@ body {
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
-.button:hover {
+.button:hover, form input[type="submit"]:hover, a .bi-trash:hover {
     background-color: black;
     color: #fff;
     font-size: 16px;

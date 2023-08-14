@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Order Confirmation</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="./css/order.css">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/home.css"/>
     <style>
         body {
             padding: 2rem;
             font-family: Arial, sans-serif;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             font-weight: bold;
         }
 
@@ -30,9 +33,14 @@
 </head>
 
 <body>
+    <header>
+        <%- include('./header.html') %>
+    </header>
     <div class="container">
         <h1>Order Confirmation</h1>
-        <p>Thank you for your order, <strong><%= ordName %></strong>!</p>
+        <p>Thank you for your order, <strong>
+                <%= ordName %>
+            </strong>!</p>
 
         <h2>Order Details</h2>
         <table class="table table-bordered table-striped">
@@ -45,20 +53,37 @@
                 </tr>
             </thead>
             <tbody>
-                <% orderItems.forEach(item => { %>
+                <% orderItems.forEach(item=> { %>
                     <tr>
-                        <td><%= item.dishName %></td>
-                        <td><%= item.quantity %></td>
-                        <td><%= item.price %></td>
-                        <td><%= item.price * item.quantity %></td>
+                        <td>
+                            <%= item.dishName %>
+                        </td>
+                        <td>
+                            <%= item.quantity %>
+                        </td>
+                        <td>
+                            <%= item.price %>
+                        </td>
+                        <td>
+                            <%= item.price * item.quantity %>
+                        </td>
                     </tr>
-                <% }); %>
+                    <% }); %>
             </tbody>
         </table>
-        <p><strong>Total Price:</strong> <%= totalPrice %></p>
-        <p><strong>Shipping Address:</strong> <%= ordAddress %></p>
-        <p><strong>Phone:</strong> <%= ordPhone %></p>
+        <p><strong>Total Price:</strong>
+            <%= totalPrice %>
+        </p>
+        <p><strong>Shipping Address:</strong>
+            <%= ordAddress %>
+        </p>
+        <p><strong>Phone:</strong>
+            <%= ordPhone %>
+        </p>
     </div>
+    <footer>
+        <%- include('./footer.html') %>
+    </footer>
 </body>
 
 </html>
