@@ -9,45 +9,30 @@ const OrderDetail =  require("../model/orderDetail.js");
 
 
 module.exports.showIndexPage = (req, res, next) => {
-    let orderItems = []
-
-    orderItems = req.session.orderItems ?? orderItems;
-
+    let orderItems = req.session.orderItems ?? [];
     if(orderItems.length > 0) {  
         dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
-            orderItems = orderItems.map(o=>{
-                let dish = ds.filter(d=>d.dishId === o.dishId)[0];
-                return {...o,...dish};
+            console.log(ds);
+            let items = orderItems.map(o=>{
+                let dish = ds.filter(d=>d.dishId == o.dishId)[0];
+                let order = {...o,...dish};
+                return order;
             });
-            console.log("showIndexPage orderItems",orderItems);
+            console.log("showIndexPage orderItems",items);
 
-            res.render('order',{orderItems:orderItems});
+            res.render('order',{orderItems:items});
         });
     }else{
         res.render('order',{orderItems:"Please select your order!"});
     }
 }
 
-module.exports.addOrder = (req, res) => {
-    let orderItems = [
-        {
-            dishId: 1,
-            quantity: 99
-        },
-        {
-            dishId: 2,
-            quantity: 100
-        }
-    ];
-
-    // Save orderItems to session
-    req.session.orderItems = orderItems;
-    res.redirect("/order");
-}
-
 module.exports.updateOrder = (req, res, next) => {
-    console.log(req.body);
-    insertOrder(req, res, next);
+    // Save orderItems to session
+    // req.session.orderItems = req.body.orderItems;
+    req.session.orderItems = req.body.orderItems;
+    req.session.save();
+    res.json({orderItems:req.body.orderItems});
 }
 
 module.exports.completeOrder = (req, res, next) => {

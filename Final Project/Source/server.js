@@ -10,7 +10,7 @@ const app = express();
 const session = require('express-session');
 app.use(session({
     secret: 'your_secret_key',  // This should be a long random string
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: { secure: false }  // Set to true if using HTTPS
 }));
