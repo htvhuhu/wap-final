@@ -3,7 +3,7 @@ const controller = require('../controller/orderController');
 
 const orderRouter = express.Router();
 
-orderRouter.get('/',controller.showIndexPage);
+orderRouter.get('/',controller.showOrderPage);
 orderRouter.post('/complete',controller.completeOrder);
 
 orderRouter.get('/complete/:id',controller.showCompleteOrder);

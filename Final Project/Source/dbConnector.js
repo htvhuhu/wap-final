@@ -62,18 +62,5 @@ class Database {
             });
         });
     }
-    
-    queryDatabase(query) {
-        return new Promise((resolve, reject) => {
-            this.connection.query(query, (err, results) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results);
-                }
-            });
-        });
-    }
-    
 }
 module.exports = new Database();

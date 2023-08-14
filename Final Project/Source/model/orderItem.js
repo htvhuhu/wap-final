@@ -7,10 +7,11 @@ module.exports = class OrderItem{
         this.quantity= quantity
     }
     static insertOrderItems(orderItems) {
+        console.log('insert orderItems',orderItems);
         return new Promise((resolve, reject) => {
             console.log("insertOrderItems",orderItems);
             orderItems.forEach(element => {
-                db.query('INSERT INTO `restaurant`.`order_detail` SET ?', [element], (err,result) => {
+                db.connection.query('INSERT INTO `restaurant`.`order_detail` SET ?', [element], (err,result) => {
                     if (err) {
                         console.error(err);
                         reject(err);
