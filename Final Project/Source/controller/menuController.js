@@ -20,7 +20,7 @@ module.exports.showMenu = (req, res, next) => {
 }
 
 module.exports.loadFoodDetail = (req, res, next) => {    
-    res.render('foodDetail');     
+    res.render('dish');     
 }
 
 module.exports.loadFoodByCategoryId = (req, res, next) => {    
