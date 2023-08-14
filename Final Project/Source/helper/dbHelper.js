@@ -41,7 +41,19 @@ function fetchDataFromTable(tableName, fieldName = 'id', idValue = null, fields 
     });
 }
 
-module.exports.fetchDataFromTable = fetchDataFromTable;
+function queryDatabase(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
+module.exports= {fetchDataFromTable:fetchDataFromTable, queryDatabase:queryDatabase}
 
 // Usage examples:
 
@@ -62,3 +74,5 @@ module.exports.fetchDataFromTable = fetchDataFromTable;
 //     .catch(error => {
 //         console.error(error.message);
 //     });
+
+
