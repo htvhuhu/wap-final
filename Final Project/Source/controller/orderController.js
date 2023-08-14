@@ -4,27 +4,23 @@ const connection = require('../dbConnector');
 const dbHelper = require('../helper/dbHelper');
 
 module.exports.showIndexPage = (req, res, next) => {
-    let orderItems = [
-        {
-            dishId: 1,
-            quantity: 5
-        },
-        {
-            dishId: 2,
-            quantity: 7
-        }
-    ]
+    let orderItems = []
 
     orderItems = req.session.orderItems ?? orderItems;
 
-    dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
-        orderItems = orderItems.map(o=>{
-            let dish = ds.filter(d=>d.dishId === o.dishId)[0];
-            return {...o,...dish};
+    if(orderItems.length > 0) {  
+        dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
+            orderItems = orderItems.map(o=>{
+                let dish = ds.filter(d=>d.dishId === o.dishId)[0];
+                return {...o,...dish};
+            });
+            console.log(orderItems);
+
+            res.render('order',{orderItems:orderItems});
         });
-        console.log(orderItems);
-        res.render('order',{orderItems:orderItems});
-    });
+    }else{
+        res.render('order',{orderItems:"Please select your order!"});
+    }
 }
 
 module.exports.addOrder = (req, res) => {
@@ -148,7 +144,7 @@ let completeOrder = (req,res,next) => {
         };
         
         sendConfirmationEmail(req.body.email, orderDetails);
-
+        req.session.orderItems = undefined;
         res.redirect('/order/complete/'+orderId);
     });
 }
@@ -156,7 +152,7 @@ let completeOrder = (req,res,next) => {
 
 
 function sendConfirmationEmail(email, orderDetails) {
-    ejs.renderFile(__dirname +"/.."+ "/views/orderComplete.html", orderDetails, function (err, data) {
+    ejs.renderFile(__dirname +"/.."+ "/views/orderComplete-email-template.html", orderDetails, function (err, data) {
         if (err) {
             console.log(err);
             return;
