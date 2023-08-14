@@ -19,11 +19,11 @@ module.exports.showMenu = (req, res, next) => {
     
 }
 
-module.exports.foodDetail = (req, res, next) => {    
+module.exports.loadFoodDetail = (req, res, next) => {    
     res.render('foodDetail');     
 }
 
-module.exports.foodByCategoryId = (req, res, next) => {    
+module.exports.loadFoodByCategoryId = (req, res, next) => {    
     (async () => {
         try {            
             let query = 'SELECT * FROM dish ';
