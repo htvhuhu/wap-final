@@ -15,7 +15,14 @@
         <%- include('./header.html') %>
     </header>
     <!-- Display Order Items -->
-    <form action="/order/complete" method="post" id="order-container">
+    <div id="order-container">
+    <form action="/order/complete" method="post">
+        <% let total=0; %>
+        <% if(!Array.isArray(orderItems)) { %>
+            <div style="height: 300px; padding: 50px;">
+                <i><%= orderItems%></i>
+            </div>
+        <% } else {%>
         <table class="table">
             <thead>
                 <tr>
@@ -28,7 +35,6 @@
                 </tr>
             </thead>
             <tbody>
-                <% let total=0; %>
                     <% orderItems.forEach((item, index)=> { %>
                         <tr id="row-<%= index %>">
                             <!-- ... (rest of the row structure) ... -->
@@ -96,7 +102,8 @@
             </div>
         </div>
     </form>
-
+    <% } %>
+    </div>
     <script>
         function increaseQuantity(index) {
             const quantityElem = document.getElementById(`quantity-${index}`);

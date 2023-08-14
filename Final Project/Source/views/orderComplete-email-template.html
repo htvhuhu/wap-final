@@ -6,17 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Order Confirmation</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/order.css">
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="stylesheet" href="/css/home.css"/>
     <style>
-        body {
-            padding: 2rem;
-            font-family: Arial, sans-serif;
-        }
-
-        h1,
-        h2 {
+        h1, h2 {
             font-weight: bold;
         }
 
@@ -29,13 +20,19 @@
         p {
             margin-top: 1rem;
         }
+
+        #order-container {
+            width: 80%;
+            margin-left: 10%;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
 <body>
-    <header>
-        <%- include('./header.html') %>
-    </header>
     <div class="container" id="order-container">
         <h1>Order Confirmation</h1>
         <p>Thank you for your order, <strong>
@@ -81,9 +78,6 @@
             <%= ordPhone %>
         </p>
     </div>
-    <footer>
-        <%- include('./footer.html') %>
-    </footer>
 </body>
 
 </html>
