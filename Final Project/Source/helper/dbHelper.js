@@ -27,12 +27,14 @@ function fetchDataFromTable(tableName, fieldName = 'id', idValue = null, fields 
 
         connection.query(query, queryParams, (err, results) => {
             if (err) {
+                console.log(err);
                 reject(err);
                 return;
             }
 
             if (results.length === 0) {
-                reject(new Error(`${tableName} not found`));
+                console.log(`No record found with ${fieldName} = ${idValue}`);
+                reject(new Error(`No record found with ${fieldName} = ${idValue}`));
                 return;
             }
 
