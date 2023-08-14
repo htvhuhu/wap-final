@@ -8,12 +8,13 @@ module.exports.showMenu = (req, res, next) => {
     (async () => {
         try {            
             let menu = await dbHelper.queryDatabase('SELECT * FROM category');
-            let dishes = await dbHelper.queryDatabase('SELECT * FROM dish');          
-            res.render('menu', {objCategories:menu, objDish:dishes});            
+            let dishes = await dbHelper.queryDatabase('SELECT * FROM dish');  
+            let orderItems = req.session.orderItems ?? [];  
+            console.log(orderItems);       
+            res.render('menu', {objCategories:menu, objDish:dishes, orderItems:orderItems});            
         } catch (error) {
             console.error(error);
         } finally {
-           
         }
     })();  
     
@@ -35,7 +36,6 @@ module.exports.loadFoodByCategoryId = (req, res, next) => {
         } catch (error) {
             console.error(error);
         } finally {
-           
         }
     })();  
 }

@@ -8,8 +8,6 @@ orderRouter.post('/complete',controller.completeOrder);
 
 orderRouter.get('/complete/:id',controller.showCompleteOrder);
 
-orderRouter.post('/updateOrder',controller.updateOrder);
-
-orderRouter.get('/addOrder',controller.addOrder);
+orderRouter.use('/updateOrder',controller.updateOrder);
 
 module.exports = orderRouter;
