@@ -193,6 +193,10 @@
     text-decoration: none;
 }
 
+.food-detail-title{
+    margin-bottom: 1rem;
+}
+
 .food-detail-title span {
     font-weight: 700;
     font-family: "Playfair Display", serif;
@@ -215,6 +219,8 @@
 .food-detail-content .caption{
     font-size: 20px;
     line-height: 37px;
+    margin-top: 1rem;
+    margin-bottom: 2rem
 }
 
 .food-detail-hr 
@@ -368,6 +374,7 @@
 .comment-list{
     padding-left: 0;
     list-style: none;
+    margin-top: 2rem;
 }
 
 .user-comment
@@ -413,9 +420,23 @@
 .btn-post-comment {
     border-color: rgba(207, 166, 113, 0.9)!important;
     background-color: rgba(207, 166, 113, 0.9)!important;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
 }
 
 .comment-func-bar
 {
     text-align: right;
+}
+
+.user-comment-item
+{
+    margin-bottom: 2rem;
+}
+
+.user-comment-item h6{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
