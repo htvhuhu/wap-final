@@ -1,7 +1,12 @@
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
-const connection = require('../dbConnector');
 const dbHelper = require('../helper/dbHelper');
+
+
+const Order =  require("../model/order.js");
+const OrderItem =  require("../model/orderItem.js");
+const OrderDetail =  require("../model/orderDetail.js");
+
 
 module.exports.showIndexPage = (req, res, next) => {
     let orderItems = []
@@ -14,7 +19,7 @@ module.exports.showIndexPage = (req, res, next) => {
                 let dish = ds.filter(d=>d.dishId === o.dishId)[0];
                 return {...o,...dish};
             });
-            console.log(orderItems);
+            console.log("showIndexPage orderItems",orderItems);
 
             res.render('order',{orderItems:orderItems});
         });
@@ -42,7 +47,7 @@ module.exports.addOrder = (req, res) => {
 
 module.exports.updateOrder = (req, res, next) => {
     console.log(req.body);
-    saveOrder(req, res, next);
+    insertOrder(req, res, next);
 }
 
 module.exports.completeOrder = (req, res, next) => {
@@ -62,94 +67,71 @@ module.exports.showCompleteOrder = (req, res, next) =>{
             
             dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
                 dishes = ds;
-                const orderDetails = {
-                    ordId: order.ordId,
-                    ordName: order.ordName,
-                    orderItems: orderItems.map(item => {
-                        return {
-                            dishName: dishes.filter(d=>d.dishId === item.dishId)[0].dishName,
-                            price: item.price,
-                            quantity: item.quantity
-                        }
-                    }),
-                    totalPrice: order.totalPrice,
-                    ordAddress: order.ordAddress,
-                    ordPhone: order.ordPhone,
-                    ordEmail: order.ordEmail,
-                    ordDate: order.ordDate,
-                };
-            
+                let items = orderItems.map(item => {
+                    let orderItem = new OrderItem(
+                        order.ordId, 
+                        item.dishId,
+                        item.price, 
+                        item.quantity
+                    );
+                    orderItem.dishName = dishes.filter(d=>d.dishId === item.dishId)[0].dishName;
+                    return orderItem;
+                });
+
+                const orderDetail = new OrderDetail(
+                    order.ordId,
+                    order.ordName,
+                    items,
+                    order.totalPrice,
+                    order.ordAddress,
+                    order.ordPhone,
+                    order.ordEmail, 
+                    order.ordDate)
                 // 3. Render the EJS template
-                console.log("orderComplete", orderDetails);
-                res.render('orderComplete', orderDetails);
+                console.log("orderComplete", orderDetail);
+                res.render('orderComplete', orderDetail);
             });
         });
     });
 }
 
-let saveOrder = (req, res, next) => {
-    return new Promise((resolve, reject) => {
-        const orderData = {
-            ordName: req.body.name,
-            ordDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
-            ordAddress: req.body.address,
-            ordPhone: req.body.phone,
-            ordEmail: req.body.email,
-            totalPrice: req.body.totalPrice
-        };
-
-        // Insert the order into the database
-        // INSERT INTO `restaurant`.`order` (`ordId`, `ordDate`, `ordName`, `ordAddress`, `ordPhone`, `ordEmail`, `totalPrice`) 
-        //VALUES (<{ordId: }>, <{ordDate: }>, <{ordName: }>, <{ordAddress: }>, <{ordPhone: }>, <{ordEmail: }>, <{totalPrice: }>);
-        connection.query('INSERT INTO `order` SET ?', [orderData], (err, result) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Internal Server Error");
-                return;
-            }
-
-            
-            var orderId = result.insertId;
-            const orderItems = req.body.items.map(item => [orderId.toString(), item.dishId, item.price, item.quantity]);
-            // Insert the associated order items into the database
-            // INSERT INTO `restaurant`.`orderdetail` (`odId`, `ordId`, `dishId`, `price`, `quantity`) 
-            // VALUES (<{odId: }>, <{ordId: }>, <{dishId: }>, <{price: }>, <{quantity: }>);
-            connection.query('INSERT INTO `restaurant`.`order_detail` (`ordId`, `dishId`, `price`, `quantity`) VALUES ?', 
-                                    [orderItems], (err) => {
-                if (err) {
-                    console.error(err);
-                    res.status(500).send("Internal Server Error");
-                    return;
-                }
-            });      
-            resolve(orderId);
-        });
-});
-}
-
 let completeOrder = (req,res,next) => {
-    saveOrder(req, res, next).then(id => {
-        console.log("orderId",id);
-        var orderId = id
-        
-        console.log("orderId",orderId);
-        
-        const orderDetails = {
-            orderId: orderId,
-            ordName: req.body.name,
-            orderItems: req.body.items,
-            totalPrice: req.body.totalPrice,
-            ordAddress: req.body.address,
-            ordPhone: req.body.phone
-        };
-        
-        sendConfirmationEmail(req.body.email, orderDetails);
-        req.session.orderItems = undefined;
-        res.redirect('/order/complete/'+orderId);
+    const order = new Order(req.body.name,
+        new Date().toISOString().slice(0, 19).replace('T', ' '),
+        req.body.address,
+        req.body.phone,
+        req.body.email,
+        req.body.totalPrice
+        );
+
+    Order.insertOrder(order).then((insertOrderResult) => {
+        var orderId = insertOrderResult.insertId;
+        console.log("insertOrder result",orderId);
+        const orderItems = req.body.items.map(item => 
+            new OrderItem(
+                orderId, 
+                item.dishId, 
+                item.price, 
+                item.quantity
+            ));
+
+        OrderItem.insertOrderItems(orderItems).then((result) => {
+            console.log("insertOrderItems result",result);
+            const orderDetails = {
+                orderId: orderId,
+                ordName: req.body.name,
+                orderItems: req.body.items,
+                totalPrice: req.body.totalPrice,
+                ordAddress: req.body.address,
+                ordPhone: req.body.phone
+            };
+            
+            sendConfirmationEmail(req.body.email, orderDetails);
+            req.session.orderItems = undefined;
+            res.redirect('/order/complete/'+orderId);
+        });
     });
 }
-
-
 
 function sendConfirmationEmail(email, orderDetails) {
     ejs.renderFile(__dirname +"/.."+ "/views/orderComplete-email-template.html", orderDetails, function (err, data) {
