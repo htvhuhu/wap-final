@@ -33,6 +33,24 @@
     border-radius: 0.25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.custom-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 1rem;
+    font-size: 1rem;
+    line-height: 2.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    min-height: 50px;
+}
+option:disabled {
+    color: rgb(170, 170, 170);
+}
+
 .reservation div {
     margin: 20px;
 }
@@ -40,4 +58,18 @@
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+}
+.res-detail {
+    display: flex;
+    justify-content:center;
+    margin: 30px;
+}
+.res-detail .left {
+    font-weight: bold;
+}
+.res-detail .right {
+    margin-left: 20px;
+}
+.res-detail .left div, .res-detail .right div {
+    padding: 10px;
 }

@@ -109,6 +109,20 @@ body {
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
+.error-div {
+    background-color: lightcoral;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
 .error {
-    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* jQuery date picker customization */
+.ui-widget-header {
+    background-color: #d0a772;
 }

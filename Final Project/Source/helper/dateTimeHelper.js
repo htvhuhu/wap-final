@@ -1,8 +1,8 @@
 class DateTimeHelper {
-  constructor() {}
+  constructor() { }
   static formatDate(date, format) {
-    if(format === undefined){
-        return date.toISOString().slice(0, 19).replace('T', ' ');
+    if (format === undefined) {
+      return date.toISOString().slice(0, 19).replace('T', ' ');
     }
     const map = {
       MM: ("0" + (date.getMonth() + 1)).slice(-2),
@@ -18,6 +18,16 @@ class DateTimeHelper {
       /MM|dd|yyyy|yy|hh|mm|ss|SSS/gi,
       (matched) => map[matched]
     );
+  }
+
+  // date: MM/DD/YYYY
+  // time: HH:mm
+  static createDate(date, time) {
+    let dateArr = date.split('/');
+    let timeArr = time.split(':');
+    console.log(dateArr, timeArr);
+    let newDate = new Date(dateArr[2], parseInt(dateArr[0])-1, dateArr[1], timeArr[0], timeArr[1], 0);
+    return this.formatDate(newDate, 'yyyy-MM-dd hh:mm:ss');
   }
 }
 

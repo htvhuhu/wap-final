@@ -1,10 +1,9 @@
 const Reservation = require('../model/reservation');
 
-exports.validate = (req, res, next) => {
-    next();
-};
-
-exports.saveReservation = (req, res, next) => {
-    Reservation.addReservation(req.body);
-    res.render('reservationComplete');
+module.exports.saveReservation = (req, res, next) => {
+    Reservation.addReservation(req.body).then(rows => {
+        res.render('reservationComplete', req.body);
+    }).catch(err => {
+        next(err);
+    });
 };
