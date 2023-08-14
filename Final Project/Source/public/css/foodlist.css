@@ -1,0 +1,422 @@
+
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+  }
+
+  .container{
+    width: 80%;
+    margin: auto;
+  }
+
+  .menu-breadcrumb-title::before
+  {
+    background: #010101;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  .menu-breadcrumb-container
+  {
+    position: relative;
+  }
+  .menu-breadcrumb {
+    padding: 16rem 0 9rem;
+    background: url(../images/all-bg.jpg) no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 0 0;
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 5rem
+  }
+
+  .menu-header-title{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .menu-header-title p {
+    font-size: 1rem;
+    font-weight: 100;
+    margin: 0px;
+}
+
+  .menu-header-title h2 {
+    color: #010101;
+    font-size: 2rem;
+    font-family: 'Arbutus Slab', serif;
+    margin-bottom: 1rem;
+  }
+
+   .menu-breadcrumb-title-text h1{
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-family: 'Arbutus Slab', serif;
+    padding: 0px;
+    position: absolute;
+    top: 4rem;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+   }
+.menu-bar {
+    width: 40%;
+    margin: auto;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.menu-bar-list{
+    display: inline-block;
+    list-style-type: none;
+}
+
+.menu-bar-item {    
+    padding: 1rem;
+    text-align: center;     
+    flex: 1;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border-radius: 4px;
+   
+}
+
+.menu-bar-item:active {
+    background-color: gray;
+}
+
+
+.menu-bar-item .current {
+    background: #cfa671;
+    color: #fff;
+    box-shadow: 2px 20px 45px 5px rgba(0,0,0,.2);
+}
+
+.menu-bar-item-active {
+    background: #cfa671;
+    color: #fff;
+    box-shadow: 2px 20px 45px 5px rgba(0,0,0,.2);
+}
+
+.food-list-container{
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.food-item{
+    position: relative;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+    width: 20rem;
+    height: 15rem;
+    margin-bottom: 2.5rem;
+}
+
+.food-item img {
+    max-height: 100%;
+    height: auto;
+    width: 100%;
+}
+
+.food-item:hover .food-item-desc{    
+    top:0px;
+  
+   
+}
+
+.food-item-desc
+{
+    position: absolute;    
+    height: 100%;
+    background: rgba(207, 166, 113, 0.9);
+    padding: 12px 12px;
+    
+    top: 30rem;
+    left: 0;    
+    width: 100%;   
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.food-item-desc h4{
+	color: #ffffff;
+	font-size: 1.5rem;
+	font-weight: 500;
+	font-family: 'Arbutus Slab', serif;
+}
+.food-item-desc p{
+	color: #ffffff;
+	font-size: 1.1rem;
+	border-bottom: 1px dashed #010101;
+	margin: 0px;
+	padding-bottom: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.food-item-desc h5{
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.food-item-desc-func
+{
+    color: #ffffff;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.food-item-desc-func a {
+    padding: 0.6rem;
+    color: white;
+    border: white 1px solid;
+    border-radius: 4px!important;
+    text-decoration: none;
+}
+
+.food-detail-title span {
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+}
+
+.food-detail-bar {
+    display: flex;
+}
+
+.food-detail-bar-item
+{
+    margin-right: 1.5rem;
+}
+
+.common-margin-top{
+    margin-top: 2.5rem;
+}
+
+.food-detail-content .caption{
+    font-size: 20px;
+    line-height: 37px;
+}
+
+.food-detail-hr 
+{
+    height: 1px;
+    opacity: 0.1;
+    border: grey 1px solid
+}
+
+
+
+.food-detail-img img{
+    max-width: 100%;
+    width: 100%;
+    transition: all ease .4s;
+    user-select: none;
+    border-radius: 0.8rem;
+}
+
+.food-detail-ingredient
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;;
+}
+
+.food-detail-ingredient-left
+{
+    width: 50%;
+
+}
+
+.food-detail-ingredient-left .title {
+    margin-top: 3rem;
+} 
+
+.food-detail-ingredient-right
+{
+    width: 40%;
+
+}
+
+.food-deliver-time-list
+{
+    
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    list-style: none;
+}
+
+.food-deliver-time-list li small {
+    font-size: 12px;
+    color: #7F7F7F;
+    text-transform: uppercase;
+    display: block;
+    line-height: 11px;
+}
+
+.food-deliver-time-list .item1{
+    padding-right: 2rem;
+    border-right: grey 0.2px solid;
+}
+
+.food-deliver-time-list .item2{
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    border-right: grey 0.2px solid;
+}
+
+.food-deliver-time-list .item3{
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    border-right: grey 0.2px solid;
+}
+
+.food-deliver-time-list .item4{
+    padding-left: 2.5rem;
+}
+
+
+.form-check-input{
+    width: 24px;
+    height: 24px;   
+    margin-top: 0;
+    border-color: rgba(207, 166, 113, 0.9);
+    border-width: 2px;
+    border-radius: 50%!important;
+}
+
+.ingredient-item{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ingredient-item-label{
+    padding-left: 1rem;
+}
+
+.nutrition-detail{
+    border-radius: 12px;
+    background-color: #f9f9f9 !important;
+    padding: 1.5rem !important;
+}
+
+.nutrition-list{
+    padding-top: 5px;
+    padding-left: 0;
+    list-style: none;
+
+
+}
+
+.nutrition-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: grey 0.1px dashed;
+}
+
+.nutrition-list li span {
+    color: #303030;
+    font-size: 16px;
+    width: 50%;
+    font-weight: 300;
+}
+
+.hr-11{
+    height: 11px;
+    opacity: 1;
+    background-color: rgba(207, 166, 113, 0.9);
+    border: none;
+}
+
+.comment-section{
+    margin-top: 5rem;
+}
+
+.comment-caption
+{
+    font-weight: 600;
+    font-size: 4rem;
+}
+
+.total-comment-label{
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.comment-list{
+    padding-left: 0;
+    list-style: none;
+}
+
+.user-comment
+{
+    /*border-bottom: 1px solid #E8E8E8;*/
+    padding-bottom: 30px;
+    margin-bottom: 35px;
+    padding-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    width: 7%;
+    margin-top: -0.5rem;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.user-comment-body{
+    flex: 1;
+}
+
+.comment-item{
+    display: flex;;
+
+}
+
+.post-comment textarea{
+    width: 100%;
+    height: 15rem;
+}
+
+.px-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+}
+
+.btn-primary {
+    border-color: rgba(207, 166, 113, 0.9);
+    background-color: rgba(207, 166, 113, 0.9);;
+}
+
+.comment-func-bar
+{
+    text-align: right;
+}
