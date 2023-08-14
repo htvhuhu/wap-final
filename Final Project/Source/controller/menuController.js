@@ -1,14 +1,13 @@
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
-const connection = require('../dbConnector');
-const dbHelper = require('../helper/dbHelper'); 
+const db = require('../dbConnector');
 
 
 module.exports.showMenu = (req, res, next) => {    
     (async () => {
         try {            
-            let menu = await dbHelper.queryDatabase('SELECT * FROM category');
-            let dishes = await dbHelper.queryDatabase('SELECT * FROM dish');  
+            let menu = await db.queryDatabase('SELECT * FROM category');
+            let dishes = await db.queryDatabase('SELECT * FROM dish');  
             let orderItems = req.session.orderItems ?? [];  
             console.log(orderItems);       
             res.render('menu', {objCategories:menu, objDish:dishes, orderItems:orderItems});            
@@ -31,7 +30,7 @@ module.exports.loadFoodByCategoryId = (req, res, next) => {
             if (req.params.id != '0')
                 query = query + ' WHERE catId=' + req.params.id;
 
-            let dishes = await dbHelper.queryDatabase(query);          
+            let dishes = await db.queryDatabase(query);          
             res.render("menuPartial", {objDish:dishes})          
         } catch (error) {
             console.error(error);

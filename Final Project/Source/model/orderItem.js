@@ -1,5 +1,4 @@
-
-const connection = require('../dbConnector');
+const db = require('../dbConnector');
 module.exports = class OrderItem{
     constructor(ordId, dishId,price, quantity){
         this.ordId = ordId,
@@ -11,7 +10,7 @@ module.exports = class OrderItem{
         return new Promise((resolve, reject) => {
             console.log("insertOrderItems",orderItems);
             orderItems.forEach(element => {
-                connection.query('INSERT INTO `restaurant`.`order_detail` SET ?', [element], (err,result) => {
+                db.query('INSERT INTO `restaurant`.`order_detail` SET ?', [element], (err,result) => {
                     if (err) {
                         console.error(err);
                         reject(err);
