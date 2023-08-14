@@ -90,8 +90,14 @@ module.exports.showCompleteOrder = (req, res, next) =>{
                 // 3. Render the EJS template
                 console.log("orderComplete", orderDetail);
                 res.render('orderComplete', orderDetail);
+            }).catch(err => {
+                res.sendStatus(404);
             });
+        }).catch(err => {
+            res.sendStatus(404);
         });
+    }).catch(err => {
+        res.sendStatus(404);
     });
 }
 
