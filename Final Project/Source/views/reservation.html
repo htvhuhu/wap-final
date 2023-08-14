@@ -13,23 +13,25 @@
     <div class="img-div">
         <h3>Reservation</h3>
     </div>
-    <div class="reservation">
-        <div class="reservationDateTime">
-            <h3>Book a table</h3>
-            <div><input type="text" name="date" placeholder="Select date"/></div>
-            <div><input type="text" name="time" placeholder="Select time"/></div>
-            <div><input type="text" name="noOfPerson" placeholder="Select person"/></div>
+    <form action="/reservation" method="post">
+        <div class="reservation">
+            <div class="reservationDateTime">
+                <h3>Book a table</h3>
+                <div><input type="text" name="date" placeholder="Select date" required /></div>
+                <div><input type="text" name="time" placeholder="Select time" required /></div>
+                <div><input type="text" name="noOfPerson" placeholder="Select person" required /></div>
+            </div>
+            <div class="contactDetail">
+                <h3>Contact Details</h3>
+                <div><input type="text" name="name" placeholder="Your Name" required /></div>
+                <div><input type="text" name="email" placeholder="Your Email" /></div>
+                <div><input type="text" name="phone" placeholder="Your Phone" required /></div>
+            </div>
         </div>
-        <div class="contactDetail">
-            <h3>Contact Details</h3>
-            <div><input type="text" name="name" placeholder="Your Name"/></div>
-            <div><input type="text" name="email" placeholder="Your Email"/></div>
-            <div><input type="text" name="phone" placeholder="Your Phone"/></div>
+        <div class="reserve-btn">
+            <input type="submit" name="reservation" value="Reservation" class="button"/>
         </div>
-    </div>
-    <div class="reserve-btn">
-        <input type="button" name="reservation" value="Reservation" class="button"/>
-    </div>
+    </form>
     <footer>
         <%- include('./footer.html') %>
     </footer>

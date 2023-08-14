@@ -50,3 +50,7 @@ app.use('/reservation', reservationRouter);
 app.listen(port, function() {
     console.log('Server is starting at', port);
 });
+
+app.use((err, req, res, next) => {
+    res.render('error', {errorMsg: err.message});
+});
