@@ -11,8 +11,9 @@ module.exports = class Order{
     }
 
     static insertOrder(order) {
+        console.log('Insert Order',order);
         return new Promise((resolve, reject) => {
-            db.query('INSERT INTO `order` SET ?', [order], (err, result) => {
+            db.connection.query('INSERT INTO `order` SET ?', [order], (err, result) => {
                 if (err) {
                     console.error(err);
                     reject(err);

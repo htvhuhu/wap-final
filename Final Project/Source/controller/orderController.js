@@ -5,9 +5,10 @@ const db = require('../dbConnector');
 const Order =  require("../model/order.js");
 const OrderItem =  require("../model/orderItem.js");
 const OrderDetail =  require("../model/orderDetail.js");
+const DateTimeHelper =  require("../helper/dateTimeHelper");
 
 
-module.exports.showIndexPage = (req, res, next) => {
+module.exports.showOrderPage = (req, res, next) => {
     let orderItems = req.session.orderItems ?? [];
     if(orderItems.length > 0) {  
         db.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
@@ -75,19 +76,19 @@ module.exports.showCompleteOrder = (req, res, next) =>{
                 console.log("orderComplete", orderDetail);
                 res.render('orderComplete', orderDetail);
             }).catch(err => {
-                res.sendStatus(404);
+                next(err);
             });
         }).catch(err => {
-            res.sendStatus(404);
+            next(err);
         });
     }).catch(err => {
-        res.sendStatus(404);
+        next(err);
     });
 }
 
 let completeOrder = (req,res,next) => {
     const order = new Order(req.body.name,
-        new Date().toISOString().slice(0, 19).replace('T', ' '),
+        DateTimeHelper.formatDate(new Date()),
         req.body.address,
         req.body.phone,
         req.body.email,
