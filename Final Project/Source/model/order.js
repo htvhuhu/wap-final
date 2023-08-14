@@ -1,5 +1,5 @@
+const db = require('../dbConnector');
 
-const connection = require('../dbConnector');
 module.exports = class Order{
     constructor(ordName,ordDate,ordAddress,ordPhone,ordEmail,totalPrice){
         this.ordName = ordName,
@@ -12,7 +12,7 @@ module.exports = class Order{
 
     static insertOrder(order) {
         return new Promise((resolve, reject) => {
-            connection.query('INSERT INTO `order` SET ?', [order], (err, result) => {
+            db.query('INSERT INTO `order` SET ?', [order], (err, result) => {
                 if (err) {
                     console.error(err);
                     reject(err);

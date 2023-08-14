@@ -1,8 +1,7 @@
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
-const dbHelper = require('../helper/dbHelper');
 
-
+const db = require('../dbConnector');
 const Order =  require("../model/order.js");
 const OrderItem =  require("../model/orderItem.js");
 const OrderDetail =  require("../model/orderDetail.js");
@@ -11,7 +10,7 @@ const OrderDetail =  require("../model/orderDetail.js");
 module.exports.showIndexPage = (req, res, next) => {
     let orderItems = req.session.orderItems ?? [];
     if(orderItems.length > 0) {  
-        dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
+        db.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
             console.log(ds);
             let items = orderItems.map(o=>{
                 let dish = ds.filter(d=>d.dishId == o.dishId)[0];
@@ -45,12 +44,12 @@ module.exports.showCompleteOrder = (req, res, next) =>{
     var order ={};
     var orderItems =[];
     var dishes =[];
-    dbHelper.fetchDataFromTable("order","ordId", orderId).then(ord => {
+    db.fetchDataFromTable("order","ordId", orderId).then(ord => {
         order = ord[0];
-        dbHelper.fetchDataFromTable("order_detail","ordId", orderId).then(ordItems => {
+        db.fetchDataFromTable("order_detail","ordId", orderId).then(ordItems => {
             orderItems = ordItems;
             
-            dbHelper.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
+            db.fetchDataFromTable("dish","dishId", orderItems.map(i=>i.dishId) ).then(ds => {
                 dishes = ds;
                 let items = orderItems.map(item => {
                     let orderItem = new OrderItem(
