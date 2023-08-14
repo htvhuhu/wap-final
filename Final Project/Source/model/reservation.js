@@ -1,4 +1,4 @@
-const connection = require('../helper/dbHelper');
+const db = require('../dbConnector');
 
 class Reservation {
     constructor(resId, resDateTime, noOfPerson, cusName, cusEmail, cusPhone) {
@@ -19,21 +19,21 @@ class Reservation {
                 cusEmail: reservation.cusEmail,
                 cusPhone: reservation.cusPhone
             };
-            const QUERY = 'INSERT INTO reservation(' +
-                                'resDateTime, ' +
-                                'noOfPerson, ' +
-                                'cusName, ' +
-                                'cusEmail, ' +
-                                'cusPhone)' +
-                            'VALUES ?';
-            connection.query(QUERY, [resObj], (result, err) => {
-                if (err) {
-                    throw new Error('Internal Server Error');
-                }
+            let QUERY = 'INSERT INTO reservation(' +
+                'resDateTime, ' +
+                'noOfPerson, ' +
+                'cusName, ' +
+                'cusEmail, ' +
+                'cusPhone)' +
+                'VALUES (?)';
+            db.query(QUERY, [resObj]).then(rows => {
+                // do something with the result
+            }).catch(err => {
+                throw new Error(err.message);
             });
-            resolve(result);
+
         });
-        
+
     }
 }
 
