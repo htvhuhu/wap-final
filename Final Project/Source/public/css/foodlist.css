@@ -410,9 +410,9 @@
     padding-left: 3rem !important;
 }
 
-.btn-primary {
-    border-color: rgba(207, 166, 113, 0.9);
-    background-color: rgba(207, 166, 113, 0.9);;
+.btn-post-comment {
+    border-color: rgba(207, 166, 113, 0.9)!important;
+    background-color: rgba(207, 166, 113, 0.9)!important;
 }
 
 .comment-func-bar
