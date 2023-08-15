@@ -46,3 +46,31 @@ CREATE TABLE `restaurant`.`nutrition` (
   `nutrition` VARCHAR(45) NOT NULL,
   `value` DECIMAL(5,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`nutId`));
+
+
+
+UPDATE `restaurant`.`dish` SET `preprationTime` = '4', `cookingTime` = '3', `servings` = '3' WHERE (`dishId` = '1');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '5', `cookingTime` = '3', `servings` = '4' WHERE (`dishId` = '2');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '6', `cookingTime` = '3', `servings` = '3' WHERE (`dishId` = '3');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '6', `cookingTime` = '3', `servings` = '3' WHERE (`dishId` = '4');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '45', `cookingTime` = '3', `servings` = '4' WHERE (`dishId` = '5');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '34' WHERE (`dishId` = '6');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '34' WHERE (`dishId` = '7');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '45' WHERE (`dishId` = '8');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '5' WHERE (`dishId` = '9');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '4' WHERE (`dishId` = '10');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '4' WHERE (`dishId` = '11');
+UPDATE `restaurant`.`dish` SET `preprationTime` = '45' WHERE (`dishId` = '12');
+
+
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Calories', '219.9');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Total Fat', '10.7 g');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Saturated Fat', '2.2 g');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Cholesterol', '37.4 mg');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Sodium', '120.3 mg');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Potassium', '32.8 mg');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Total Carbohydrate', '22.3 g');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Sugars', '8.4 g');
+INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Protein', '7.9 g');
+
+

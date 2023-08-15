@@ -64,15 +64,15 @@
                           <ul class="food-deliver-time-list">
                             <li class="item1">
                               <small>Cook Time</small>
-                              <span>15 min</span>
+                              <span><%=objDish.cookingTime%> min</span>
                             </li>
                             <li class="item2">
                               <small>Prep Time</small>
-                              <span>15 min</span>
+                              <span><%=objDish.preprationTime%> min</span>
                             </li>
                             <li class="item3">
                               <small>Servings</small>
-                              <span>4 People 
+                              <span><%=objDish.servings%> People 
                                 
                               </span>
                             </li>
@@ -93,49 +93,23 @@
                   
                   <div class="food-detail-ingredient">
                       <div class="food-detail-ingredient-left">
-                          
-                        <div class="nutrition-detail">
-                          <h2>Nutrition Facts</h2>
-                          <ul class="nutrition-list">
-                              <li>
-                                <span>Calories</span>
-                                <span>219.9</span>
-                              </li>
-                              <li>
-                                <span>Total Fat</span>
-                                <span>10.7 g</span>
-                              </li>
-                              <li>
-                                <span>Saturated Fat</span>
-                                <span>2.2 g</span>
-                              </li>
-                              <li>
-                                <span>Cholesterol</span>
-                                <span>37.4 mg</span>
-                              </li>
-                              <li>
-                                <span>Sodium</span>
-                                <span>120.3 mg</span>
-                              </li>
-                              <li>
-                                <span>Potassium</span>
-                                <span>32.8 mg</span>
-                              </li>
-                              <li>
-                                <span>Total Carbohydrate</span>
-                                <span>22.3 g</span>
-                              </li>
-                              <li>
-                                <span>Sugars</span>
-                                <span>8.4 g</span>
-                              </li>
-                              <li>
-                                <span>Protein</span>
-                                <span>7.9 g</span>
-                              </li>
-                            </ul>
-                            
-                      </div>
+                        <%if (objNutrition != null && objNutrition.length > 0){%>  
+
+                          <div class="nutrition-detail">
+                            <h2>Nutrition Facts</h2>
+                            <ul class="nutrition-list">
+                              <%for(let item of objNutrition){%>
+                                <li>
+                                  <span><%=item.nutrition%></span>
+                                  <span><%=item.value%></span>
+                                </li>
+                                <%}%>
+                                
+                              </ul>
+                              
+                        </div>
+                          <%}%>
+                        
                       <div class="order-func-bar">
                         <button type="button" class="btn btn-post-comment">Order</button>
                     </div>

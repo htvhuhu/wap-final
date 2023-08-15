@@ -36,8 +36,10 @@ module.exports.loadDishDetail = async  (req, res, next) => {
             
             if (dish.ingredients != null)
                 objingredient = dish.ingredients.split(',')
+
+            let nutrition = await menuModel.getNutritions(id);  
                 
-            res.render("dish", {objDish:dish, ingredients:objingredient, objReview:reviews }) ;      
+            res.render("dish", {objDish:dish, ingredients:objingredient, objReview:reviews, objNutrition:nutrition }) ;      
 
         } catch (error) {
             throw error;
