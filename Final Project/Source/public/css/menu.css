@@ -512,3 +512,27 @@
     text-align: left;
     margin-top: 2rem;
 }
+
+
+.food-detail-header{
+    display: flex;
+}
+
+.food-detail-header
+{
+    display: flex;
+}
+
+.food-detail-header-left
+{
+    margin-right: 2rem;
+}
+
+.food-detail-header-left img
+{
+    width: 30rem;
+}
+
+.food-detail-serve-time{
+   margin-top: 3rem;
+}
