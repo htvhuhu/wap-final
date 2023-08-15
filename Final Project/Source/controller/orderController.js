@@ -1,12 +1,11 @@
 const ejs = require('ejs');
-const nodemailer = require('nodemailer');
 
 const db = require('../dbConnector');
 const Order =  require("../model/order.js");
 const OrderItem =  require("../model/orderItem.js");
 const OrderDetail =  require("../model/orderDetail.js");
 const DateTimeHelper =  require("../helper/dateTimeHelper");
-
+const EmailHelper = require('../helper/emailHelper');
 
 module.exports.showOrderPage = (req, res, next) => {
     let orderItems = req.session.orderItems ?? [];
@@ -127,32 +126,10 @@ let completeOrder = (req,res,next) => {
 function sendConfirmationEmail(email, orderDetails) {
     ejs.renderFile(__dirname +"/.."+ "/views/orderComplete-email-template.html", orderDetails, function (err, data) {
         if (err) {
-            console.log(err);
-            return;
+            throw err;
         }
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: '111d00111@mail.cjcu.edu.tw',
-                pass: 'HuanHuan'
-            }
-        });
-
-        const mailOptions = {
-            from: '111d00111@mail.cjcu.edu.tw',
-            to: email,
-            subject: 'Order Confirmation',
-            html: data
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+        EmailHelper.sendEmail(email, 'Order Confirmation', data);
     });
 }
 
