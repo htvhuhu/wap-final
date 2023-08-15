@@ -6,10 +6,8 @@ module.exports = class OrderItem{
         this.price= price,
         this.quantity= quantity
     }
-    static insertOrderItems(orderItems) {
-        console.log('insert orderItems',orderItems);
+    static async insertOrderItems(orderItems) {
         return new Promise((resolve, reject) => {
-            console.log("insertOrderItems",orderItems);
             orderItems.forEach(element => {
                 db.connection.query('INSERT INTO `restaurant`.`order_detail` SET ?', [element], (err,result) => {
                     if (err) {
@@ -22,4 +20,12 @@ module.exports = class OrderItem{
             });
         });
     }
-};
+
+    static async getDishes(dishIds) {
+        return db.fetchDataFromTable("dish","dishId",dishIds);;
+    }
+
+    static async getOrderItems(ordId) {
+        return db.fetchDataFromTable("order_detail","ordId", ordId);
+    }
+}
