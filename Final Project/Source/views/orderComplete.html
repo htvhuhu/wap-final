@@ -31,13 +31,10 @@
         <%- include('./header.html') %>
     </header>
     <div class="container" id="order-container">
-        <h1>Order Confirmation</h1>
-        <p>Thank you for your order, <strong>
-                <%= ordName %>
-            </strong>!</p>
-
-        <h2>Order Details</h2>
-        <h6>Order ID: <%=ordId%></h6>
+        <h3>Thank you for your order, <strong><%= ordName %></strong>!</h3>
+        <br/>
+        <h2>Order Detail</h2>
+        <h5>Order ID: <%=ordId%></h5>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -56,18 +53,16 @@
                         <td>
                             <%= item.quantity %>
                         </td>
-                        <td>
-                            <%= item.price %>
+                        <td class="price"><%= item.price %>
                         </td>
-                        <td>
-                            <%= item.price * item.quantity %>
+                        <td class="price"><%= item.price * item.quantity %>
                         </td>
                     </tr>
                     <% }); %>
             </tbody>
         </table>
-        <p><strong>Total Price:</strong>
-            <%= totalPrice %>
+        <p><strong>Total Price:
+            <span id="grandTotal"><%= totalPrice %></span></strong>
         </p>
         <p><strong>Shipping Address:</strong>
             <%= ordAddress %>
