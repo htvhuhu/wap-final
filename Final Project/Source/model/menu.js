@@ -44,4 +44,10 @@ module.exports = class OrderItem{
         return db.query(query);
     }
 
+    static getNutritions(dishId)
+    {
+        let query = 'SELECT * FROM nutrition WHERE dishId=' + dishId;  
+        return db.query(query);
+    }
+
 }
