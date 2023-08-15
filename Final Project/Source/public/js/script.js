@@ -13,4 +13,42 @@ $(document).ready(function(){
         });
 
     })
+
+    
 })
+
+function postComment(dishId)
+{
+   
+    var name=$('#commentname').val();
+    var email = $('#commentemail').val();
+    var comment = $('#comment').val();
+
+    if (name == '' || email == '' || comment == '')
+    {
+        $('.required-label').show();
+        return false;
+    }
+    else
+    {
+        $('.required-label').hide();
+
+        $.ajax({
+            type: "POST",
+            url: '/menu/comment',
+            data: JSON.stringify({ name: name, email:email, comment:comment, dishId:dishId}),
+            datatype: "html",
+            contentType: 'application/json',
+            success: function (result) {
+
+                if (result != null) {                    
+                    $('#commentList').html(result);
+                    $('#commentname').val('');
+                    $('#commentemail').val('');
+                    $('#comment').val('');
+                }
+
+            },
+        });
+    }
+}
