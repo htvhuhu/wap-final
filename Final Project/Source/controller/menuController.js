@@ -1,14 +1,15 @@
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 const db = require('../dbConnector');
+const menuModel = require('../model/menu');
 
 
 module.exports.showMenu = async (req, res, next) => {   
         try {            
-            let menu = await db.query('SELECT * FROM category');
-            let dishes = await db.query('SELECT * FROM dish');  
+            let menu =  await menuModel.getCatagories();
+            let dishes = await menuModel.getDishes();  
             let orderItems = req.session.orderItems ?? [];  
-            console.log(orderItems);       
+                  
             res.render('menu', {objCategories:menu, objDish:dishes, orderItems:orderItems});            
         } 
         catch (error) 
@@ -24,14 +25,12 @@ module.exports.showMenu = async (req, res, next) => {
 module.exports.loadDishDetail = async  (req, res, next) => {    
         var id = req.params.id;
        
-        try {            
-            let query = 'SELECT * FROM dish WHERE dishId=' + id;            
-
-            let arrDish = await db.query(query); 
+        try {        
+                     
+            let arrDish = await await menuModel.getDishById(id);
             let dish = arrDish[0];
 
-            query = 'SELECT * FROM review WHERE dishId=' + id;  
-            let reviews = await db.query(query);  
+            let reviews = await menuModel.getReviews(id);            
 
             let objingredient = [];
             
@@ -51,12 +50,13 @@ module.exports.loadDishDetail = async  (req, res, next) => {
 }
 
 module.exports.loadDishByCategoryId = async (req, res, next) => {   
-        try {            
-            let query = 'SELECT * FROM dish ';
-            if (req.params.id != '0')
-                query = query + ' WHERE catId=' + req.params.id;
-
-            let dishes = await db.query(query);          
+        try {    
+            let dishes;            
+            if (req.params.id != '0')                
+                dishes = await menuModel.getDishByCatagory(req.params.id) ;
+            else
+                dishes = await menuModel.getDishes();
+                   
             res.render("partials/_dishList", {objDish:dishes})  
 
         } catch (error) {
@@ -68,13 +68,16 @@ module.exports.loadDishByCategoryId = async (req, res, next) => {
 }
 
 module.exports.addComment = async (req, res, next) => {    
-    try {       
-        let query = `INSERT INTO review(dishId, revName, revDetail) VALUES('${req.body.dishId}','${req.body.name}','${req.body.comment}')`
-        db.query(query);    
+    try {  
+            let objComment = {};
+            objComment.dishId = req.body.dishId;
+            objComment.name = req.body.name;
+            objComment.comment = req.body.comment;
 
-        query = 'SELECT * FROM review WHERE dishId=' + req.body.dishId;  
-        let reviews = await db.query(query);
-
+            await menuModel.addComment(objComment);         
+            
+            let reviews = await menuModel.getReviews(req.body.dishId);
+            
         res.render("partials/_menuComment", {objReview:reviews})       
 
     } catch (error)
