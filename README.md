@@ -1,4 +1,5 @@
-** Update 8/15/2023 **
+**** Update 8/15/2023 ****
+
 ALTER TABLE `restaurant`.`dish` 
 ADD COLUMN `preprationTime` INT NULL AFTER `dishImageURL`,
 ADD COLUMN `cookingTime` INT NULL AFTER `preprationTime`,
