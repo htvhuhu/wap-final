@@ -37,16 +37,17 @@ table img {
     border-radius: 5px;
 }
 
-form label {
-    font-weight: bold;
-}
-
 form input[type="text"], form input[type="tel"],form input[type="email"] {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 2.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 a {
@@ -63,12 +64,19 @@ a .bi-trash {
     font-size: larger;
 }
 
-#shipment-div{
-    width: 40%;
+#shipment-div {
+    width: 50%;
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#shipment-div h2 {margin-bottom: 20px;
+}
+
+#shipment-div div {
+    margin-bottom: 20px;
 }
 
 #shipment-div-container{
