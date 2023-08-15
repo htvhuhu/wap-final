@@ -38,7 +38,7 @@ body {
 }
 .navbar li a {
     color: #666666;
-    padding: 6px 12px;
+    padding: 10px 14px;
     border-radius: 4px;
     width: 100%;
     border: none;
@@ -48,7 +48,7 @@ body {
 .navbar li a:hover {
     background: #d0a772;
     color: white;
-    padding: 6px 12px;
+    padding: 10px 14px;
     border-radius: 4px;
     width: 100%;
     border: none;

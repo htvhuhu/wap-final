@@ -200,6 +200,7 @@
     border: white 1px solid;
     border-radius: 4px!important;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .food-detail-title{
