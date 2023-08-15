@@ -20,6 +20,12 @@
 .reservationDateTime, .contactDetail {
     width: 30%;
 }
+
+.reservationDateTime .morethan5 {
+    margin-top: 15px;
+    font-size: 12px;
+    font-style: italic;
+}
 .reservation input {
     display: block;
     width: 100%;
