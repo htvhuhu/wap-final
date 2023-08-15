@@ -51,9 +51,10 @@
 
   .menu-header-title h2 {
     color: #010101;
-    font-size: 2rem;
-    font-family: 'Arbutus Slab', serif;
+    font-size: 2rem;    
     margin-bottom: 1rem;
+
+    
   }
 
    .menu-breadcrumb-title-text h1{
@@ -512,6 +513,10 @@
 .order-func-bar{
     text-align: left;
     margin-top: 2rem;
+    color: #010101;
+    font-size: 2rem;
+    font-family: 'Arbutus Slab', serif;
+    margin-bottom: 1rem;
 }
 
 
