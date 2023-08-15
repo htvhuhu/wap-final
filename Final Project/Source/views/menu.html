@@ -13,16 +13,12 @@
         </header>
         <div class="menu-breadcrumb-container">
             <div class="menu-breadcrumb-title menu-breadcrumb">
+                <div class="menu-breadcrumb-title-text">
+                    <h1>Special Menu</h1>
+                </div>
             </div>
-            <div class="menu-breadcrumb-title-text">
-                <h1 >Special Menu</h1>
-            </div>
-        </div>
-        <div class="menu-header-title">
-            <h2>Special Menu</h2>
         </div>
         <div class="container">
-            
             <div class="menu-bar ">
                 <div class="menu-bar-item menu-bar-item-active" id="0">
                     All
@@ -31,9 +27,7 @@
                     <div class="menu-bar-item" id="<%=item.catId%>">
                         <%=item.catName%>
                     </div>
-                    <%}%>                   
-                
-                
+                <%}%>                   
             </div>
 
             <div class="food-list-container" id="foodContainer">
@@ -48,11 +42,9 @@
                                     <a id="removeOrder" onclick="updateOrder(this,<%=item.dishId%>)" ><%= orderItems.filter(o=>o.dishId == item.dishId).length > 0 ? "Remove Order" : "Add Order" %></a>
                                     <a href="/menu/dish/<%=item.dishId%>">View Detail</a>
                             </div>
-                            
                         </div>
                     </div>
-                    <%}%>                
-                
+                <%}%>                
             </div>
         </div>
         <footer>
