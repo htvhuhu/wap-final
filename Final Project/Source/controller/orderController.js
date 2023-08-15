@@ -17,7 +17,6 @@ module.exports.showOrderPage = async (req, res, next) => {
             let order = {...o,...dish};
             return order;
         });
-        console.log("showIndexPage orderItems",items);
 
         res.render('order',{orderItems:items});
     }else{
@@ -65,7 +64,6 @@ module.exports.showCompleteOrder = async (req, res, next) =>{
             order.ordEmail, 
             order.ordDate)
         // 3. Render the EJS template
-        console.log("orderComplete", orderDetail);
         res.render('orderComplete', orderDetail);
     } catch (error) {
         next(error);
@@ -82,28 +80,34 @@ let completeOrder = async (req,res,next) => {
             req.body.totalPrice
             );
     
-        var orderId =  (await Order.insertOrder(order)).insertId; 
+        // var orderId =  (await Order.insertOrder(order)).insertId; 
 
-        const orderItems = req.body.items.map(item => 
-            new OrderItem(
-                orderId, 
-                item.dishId, 
-                item.price, 
-                item.quantity
-            ));
-        await OrderItem.insertOrderItems(orderItems); 
-        console.log("insertOrder result",orderId);
-        const orderDetails = {
-            orderId: orderId,
-            ordName: req.body.name,
-            orderItems: req.body.items,
-            totalPrice: req.body.totalPrice,
-            ordAddress: req.body.address,
-            ordPhone: req.body.phone
-        };
-        sendConfirmationEmail(req.body.email, orderDetails);
-        req.session.orderItems = undefined;
-        res.redirect('/order/complete/'+orderId);
+        // const orderItems = req.body.items.map(item => 
+        //     new OrderItem(
+        //         orderId, 
+        //         item.dishId, 
+        //         item.price, 
+        //         item.quantity
+        //     ));
+        // await OrderItem.insertOrderItems(orderItems); 
+        // console.log("insertOrder result",orderId);
+        var orderId = await Order.insertOrderTransaction(order, req.body.items);
+
+        if (orderId){
+            const orderDetails = {
+                orderId: orderId, // orderId
+                ordName: req.body.name,
+                orderItems: req.body.items,
+                totalPrice: req.body.totalPrice,
+                ordAddress: req.body.address,
+                ordPhone: req.body.phone
+            };
+            sendConfirmationEmail(req.body.email, orderDetails);
+            req.session.orderItems = undefined;
+            res.redirect('/order/complete/'+orderId);
+        }else{
+            throw new Error("Something wrong!!!")
+        }
     } catch (error) {
         next(error);
     }
