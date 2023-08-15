@@ -18,7 +18,6 @@ table {
 
 table th, table td {
     padding: 0.75rem;
-    vertical-align: top;
     border-top: 1px solid #dee2e6;
 }
 
@@ -37,13 +36,6 @@ table img {
     object-fit: cover;
     border-radius: 5px;
 }
-
-/* form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
 
 form label {
     font-weight: bold;
@@ -71,9 +63,8 @@ a .bi-trash {
     font-size: larger;
 }
 
-
 #shipment-div{
-    width: 50%;
+    width: 40%;
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -82,4 +73,15 @@ a .bi-trash {
 
 #shipment-div-container{
     padding: 10px;
+}
+
+#grandTotal::before {
+    content: '$';
+    font-weight: bold;
+}
+.price::before {
+    content: '$';
+}
+.small-btn {
+    width: 50px;
 }
