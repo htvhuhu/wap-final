@@ -1,14 +1,9 @@
 const mysql = require('mysql');
+const config = require('./config');
 
 class Database {
     constructor() {
-        this.connection = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: 'restaurant',
-            connectTimeout: 60000
-        });
+        this.connection = mysql.createConnection(config.dbConfig);
     }
     query(sql, args) {
         return new Promise((resolve, reject) => {

@@ -1,25 +1,18 @@
 const nodemailer = require('nodemailer');
+const config = require('../config');
 
 class Email {
     constructor() {
-        this.transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: '111d00111@mail.cjcu.edu.tw',
-                pass: 'HuanHuan'
-            }
-        });
+        this.transporter = nodemailer.createTransport(config.emailConfig);
     }
     
     sendEmail(mailTo, subject, data) {
-        const mailOptions = {
-            from: '111d00111@mail.cjcu.edu.tw',
-            to: mailTo,
-            subject: subject,
-            html: data
-        };
+        const emailOptions = config.emailOptions;
+        emailOptions.to = mailTo;
+        emailOptions.subject = subject;
+        emailOptions.html = data;
 
-        this.transporter.sendMail(mailOptions, (error, info) => {
+        this.transporter.sendMail(emailOptions, (error, info) => {
             if (error) {
                 throw error;
             } else {
