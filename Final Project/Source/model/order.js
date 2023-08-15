@@ -10,7 +10,7 @@ module.exports = class Order{
         this.totalPrice= totalPrice
     }
 
-    static insertOrder(order) {
+    static async insertOrder(order) {
         console.log('Insert Order',order);
         return new Promise((resolve, reject) => {
             db.connection.query('INSERT INTO `order` SET ?', [order], (err, result) => {
@@ -22,5 +22,8 @@ module.exports = class Order{
                 resolve(result);
             });
         });
+    }
+    static async getOrder(ordId) {
+        return db.fetchDataFromTable("order","ordId", ordId);
     }
 };
