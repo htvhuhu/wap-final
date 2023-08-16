@@ -56,8 +56,9 @@ module.exports.loadDishByCategoryId = async (req, res, next) => {
                 dishes = await menuModel.getDishByCatagory(req.params.id) ;
             else
                 dishes = await menuModel.getDishes();
-                   
-            res.render("partials/_dishList", {objDish:dishes})  
+            
+            let orderItems = req.session.orderItems ?? [];  
+            res.render("partials/_dishList", {objDish:dishes, orderItems:orderItems})  
 
         } catch (error) {
             throw error;
