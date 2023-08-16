@@ -47,6 +47,10 @@ CREATE TABLE `restaurant`.`nutrition` (
   `value` DECIMAL(5,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`nutId`));
 
+ALTER TABLE `restaurant`.`nutrition` 
+CHANGE COLUMN `value` `value` VARCHAR(45) NOT NULL DEFAULT '0.00' ;
+
+
 
 
 UPDATE `restaurant`.`dish` SET `preprationTime` = '4', `cookingTime` = '3', `servings` = '3' WHERE (`dishId` = '1');
