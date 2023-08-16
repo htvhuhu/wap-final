@@ -139,7 +139,6 @@
             <%- include('./footer.html') %>
         </footer>
         <script>
-            var items = <%-JSON.stringify(orderItems)%>;
             console.log(items);
             function updateOrder(self,id) {
             if(items.filter(i =>i.dishId == id).length == 0){

@@ -15,11 +15,11 @@
         </div>
     </div>
 </div>
-<script src="/js/script.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
         crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
 <script>
         const pathArray = window.location.pathname.split('/');
         const firstLevelPath = pathArray[1];
@@ -31,7 +31,7 @@
 
         document.getElementById(firstLevelPath).classList.add('active');
 
-        var items = <%-JSON.stringify(orderItems)%>;
+        let items = <%-JSON.stringify(orderItems)%>;
         showBadge(items);
         function showBadge(items){
             if(Array.isArray(items) && items.length > 0) {

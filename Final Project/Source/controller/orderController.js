@@ -57,6 +57,7 @@ module.exports.showCompleteOrder = async (req, res, next) =>{
         const orderDetail = new OrderDetail(
             order.ordId,
             order.ordName,
+            [],
             items,
             order.totalPrice,
             order.ordAddress,
@@ -79,30 +80,21 @@ let completeOrder = async (req,res,next) => {
             req.body.email,
             req.body.totalPrice
             );
-    
-        // var orderId =  (await Order.insertOrder(order)).insertId; 
-
-        // const orderItems = req.body.items.map(item => 
-        //     new OrderItem(
-        //         orderId, 
-        //         item.dishId, 
-        //         item.price, 
-        //         item.quantity
-        //     ));
-        // await OrderItem.insertOrderItems(orderItems); 
-        // console.log("insertOrder result",orderId);
         var orderId = await Order.insertOrderTransaction(order, req.body.items);
 
         if (orderId){
-            const orderDetails = {
-                ordId: orderId, // orderId
-                ordName: req.body.name,
-                orderItems: req.body.items,
-                totalPrice: req.body.totalPrice,
-                ordAddress: req.body.address,
-                ordPhone: req.body.phone
-            };
-            sendConfirmationEmail(req.body.email, orderDetails);
+            const orderDetail = new OrderDetail(
+                orderId,
+                req.body.name,
+                [],
+                req.body.items,
+                req.body.totalPrice,
+                req.body.address,
+                req.body.phone,
+                req.body.email, 
+                order.ordDate)
+            
+            sendConfirmationEmail(req.body.email, orderDetail);
             req.session.orderItems = undefined;
             res.redirect('/order/complete/'+orderId);
         }else{

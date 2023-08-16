@@ -98,7 +98,7 @@
                         <input type="email" id="email" name="email" required> <!-- Email input for sending confirmation -->
                     </div>
                     <div>
-                        <input type="submit" value="Complete Order">
+                        <input type="submit" onclick="completeOrder()" value="Complete Order">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,6 @@
     </form>
     </div>
     <script>
-        var items = <%-JSON.stringify(orderItems)%>;
         showBadge(items);
         showTable(items);
 
@@ -200,6 +199,12 @@
                 $("#no-items-div").show();
                 $("#has-items-div").hide();
             }
+        }
+        function completeOrder(){
+            items = [];
+            showBadge(items);
+            //showTable(items);
+            return true;
         }
 </script>
     <footer>
