@@ -30,72 +30,65 @@
                   </p>
                   <div class="food-detail-header">
                     <div class="food-detail-header-left">
-                      <div class="">
-                        <img src = "<%=objDish.dishImageURL%>"/>
-                    </div>
+                      <img src = "<%=objDish.dishImageURL%>"/>
                     </div>
                     <div class="food-detail-header-right">
-                      <div>
+                      <div class="item1">
                         <div class="title">
-                          <h2>Ingredients</h2>
+                          <h3>Ingredients</h3>
                         </div>
                         <%for(let item of ingredients){%>
                           <div class="ingredient-item">
-                              
                                   <svg data-name="feather-icon/edit" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                     <rect data-name="Bounding Box" width="16" height="16" fill="rgba(255,255,255,0)"></rect>
                                     <path d="M2,14.747a2,2,0,0,1-2-2V3.414a2,2,0,0,1,2-2H6.667a.667.667,0,1,1,0,1.333H2a.667.667,0,0,0-.667.667v9.334A.667.667,0,0,0,2,13.414h9.334A.666.666,0,0,0,12,12.748V8.081a.667.667,0,1,1,1.333,0v4.667a2,2,0,0,1-2,2ZM4.141,10.49a.659.659,0,0,1-.121-.571l.667-2.666a.67.67,0,0,1,.176-.31L11.2.61A2.081,2.081,0,0,1,14.042.52l.1.09.09.1a2.084,2.084,0,0,1-.09,2.846L7.8,9.886a.669.669,0,0,1-.31.175l-2.666.667a.675.675,0,0,1-.165.02A.66.66,0,0,1,4.141,10.49Zm8-8.938-6.2,6.2L5.583,9.164l1.41-.352,6.2-6.2a.748.748,0,1,0-1.057-1.057Z" transform="translate(0.667 0.586)"></path>
                                   </svg>
-                               
                               <label class="ingredient-item-label" for=""><%=item%></label>
                             </div>
                           <%}%>
-  
-                          <div class="food-detail-serve-time">
-                            <ul class="food-deliver-time-list">
-                              <li class="item1">
-                                <small>Prep Time</small>
-                                <span><%=objDish.preprationTime%> min</span>
-                              </li>
-                              <li class="item2">
-                                <small>Cook Time</small>
-                                <span><%=objDish.cookingTime%> min</span>
-                              </li>
-                              <li class="item3">
-                                <small>Servings</small>
-                                <span><%=objDish.servings%> person(s)</span>
-                              </li>
-                            </ul>
-                          </div>
                       </div>
-                      <div class="order-func-container">
+                      <div class="item2">
                         <input type="button" class="button" value="Add Order" />
                         <div class="price">Price: <label><%=objDish.price%></label></div>
                       </div>
+
+                      <div class="item3">
+                        <div class="food-detail-ingredient">
+                            <%if (objNutrition != null && objNutrition.length > 0){%>  
+                              <div class="nutrition-detail">
+                                <h3>Nutrition Facts</h3>
+                                <ul class="nutrition-list">
+                                  <%for(let item of objNutrition){%>
+                                    <li>
+                                      <span><%=item.nutrition%></span>
+                                      <span><%=item.value%></span>
+                                    </li>
+                                    <%}%>
+                                  </ul>
+                              </div>
+                            <%}%>
+                        </div>
                     </div>
                   </div>
-                  <div class="food-detail-ingredient">
-                      <div class="food-detail-ingredient-left">
-                        <%if (objNutrition != null && objNutrition.length > 0){%>  
-
-                          <div class="nutrition-detail">
-                            <h2>Nutrition Facts</h2>
-                            <ul class="nutrition-list">
-                              <%for(let item of objNutrition){%>
-                                <li>
-                                  <span><%=item.nutrition%></span>
-                                  <span><%=item.value%></span>
-                                </li>
-                                <%}%>
-                                
-                              </ul>
-                              
-                        </div>
-                          <%}%>
-                      </div>
-                      <div class="food-detail-ingredient-right">
-                      </div>
+                    
                   </div>
+                  <div class="food-detail-serve-time">
+                    <ul class="food-deliver-time-list">
+                      <li class="item1">
+                        <small>Prep Time</small>
+                        <span><%=objDish.preprationTime%> min</span>
+                      </li>
+                      <li class="item2">
+                        <small>Cook Time</small>
+                        <span><%=objDish.cookingTime%> min</span>
+                      </li>
+                      <li class="item3">
+                        <small>Servings</small>
+                        <span><%=objDish.servings%> person(s)</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
           </div>
           <hr class="hr-11">
           <div class="comment-section">
