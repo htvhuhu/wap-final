@@ -9,7 +9,6 @@ module.exports.showMenu = async (req, res, next) => {
             let menu =  await menuModel.getCatagories();
             let dishes = await menuModel.getDishes();  
             let orderItems = req.session.orderItems ?? [];  
-                  
             res.render('menu', {objCategories:menu, objDish:dishes, orderItems:orderItems});            
         } 
         catch (error) 
@@ -24,9 +23,7 @@ module.exports.showMenu = async (req, res, next) => {
 
 module.exports.loadDishDetail = async  (req, res, next) => {    
         var id = req.params.id;
-       
         try {        
-                     
             let arrDish = await await menuModel.getDishById(id);
             let dish = arrDish[0];
 
@@ -38,15 +35,16 @@ module.exports.loadDishDetail = async  (req, res, next) => {
                 objingredient = dish.ingredients.split(',')
 
             let nutrition = await menuModel.getNutritions(id);  
-                
-            res.render("dish", {objDish:dish, ingredients:objingredient, objReview:reviews, objNutrition:nutrition }) ;      
+            
+            let orderItems = req.session.orderItems ?? [];  
+
+            res.render("dish", {objDish:dish, ingredients:objingredient, objReview:reviews, objNutrition:nutrition, orderItems:orderItems}) ;      
 
         } catch (error) {
             throw error;
         } 
         finally
         {
-           
         }      
        
 }

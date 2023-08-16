@@ -48,10 +48,10 @@
                           <%}%>
                       </div>
                       <div class="item2">
-                        <input type="button" class="button" value="Add Order" />
+                        <input type="button" onclick="updateOrder(this,<%=objDish.dishId%>)" class="button" 
+                        value="<%= orderItems.filter(o=>o.dishId == objDish.dishId).length > 0 ? "Remove Order" : "Add Order" %>" />
                         <div class="price">Price: <label><%=objDish.price%></label></div>
                       </div>
-
                       <div class="item3">
                         <div class="food-detail-ingredient">
                             <%if (objNutrition != null && objNutrition.length > 0){%>  
@@ -105,7 +105,7 @@
                                   </a>
                               </div>
                               <div class="user-comment-body">
-                                 <div class="user-comment-item">
+                                <div class="user-comment-item">
                                     <h6 class="big inter-font font-weight-semibold"><%=item.revName%></h6>
                                     <p>
                                         <%=item.revDetail%>
@@ -138,7 +138,23 @@
         <footer>
             <%- include('./footer.html') %>
         </footer>
+        <script>
+            var items = <%-JSON.stringify(orderItems)%>;
+            console.log(items);
+            function updateOrder(self,id) {
+            if(items.filter(i =>i.dishId == id).length == 0){
+                items.push({dishId:id,quantity:1});
+                $(self).val("Remove Order");
+            }else{
+                items = items.filter(i =>i.dishId != id);
+                $(self).val("Add Order");
+            }
+            console.log(items);
+            $.post("/order/updateOrder",{orderItems:items}, (data)=>{
+                console.log(data);
+            });
+            showBadge(items);
+        }
+        </script>
     </body>
 </html>
-
-<script src="/js/script.js"></script>

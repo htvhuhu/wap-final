@@ -20,7 +20,7 @@ module.exports.showOrderPage = async (req, res, next) => {
 
         res.render('order',{orderItems:items});
     }else{
-        res.render('order',{orderItems:"Please select your order!"});
+        res.render('order',{orderItems});
     }
 }
 
@@ -95,7 +95,7 @@ let completeOrder = async (req,res,next) => {
 
         if (orderId){
             const orderDetails = {
-                orderId: orderId, // orderId
+                ordId: orderId, // orderId
                 ordName: req.body.name,
                 orderItems: req.body.items,
                 totalPrice: req.body.totalPrice,
