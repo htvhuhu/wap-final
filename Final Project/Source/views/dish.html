@@ -15,29 +15,19 @@
         <header>
             <%- include('./header.html') %>
         </header>
-        <div class="container" style="margin-top: 3rem;">
+        <div class="container" style="margin-top: 2rem;">
           <div class="food-detail-title">                
               <span><%=objDish.dishName%></span>
           </div>
 
           <div class="food-detail-bar ">
-                            
-                          
-            
-             
-              
           </div>
-          <div>
-              <hr class="common-margin-top" style="height: 1px; width: 100%;"> 
-          </div>
+          <hr/>
           
           <div class = "food-detail-content" >
                   <p class="caption">
                      <%=objDish.description%>
                   </p>
-
-                  
-
                   <div class="food-detail-header">
                     <div class="food-detail-header-left">
                       <div class="">
@@ -64,31 +54,26 @@
                           <div class="food-detail-serve-time">
                             <ul class="food-deliver-time-list">
                               <li class="item1">
-                                <small>Cook Time</small>
-                                <span><%=objDish.cookingTime%> min</span>
-                              </li>
-                              <li class="item2">
                                 <small>Prep Time</small>
                                 <span><%=objDish.preprationTime%> min</span>
                               </li>
+                              <li class="item2">
+                                <small>Cook Time</small>
+                                <span><%=objDish.cookingTime%> min</span>
+                              </li>
                               <li class="item3">
                                 <small>Servings</small>
-                                <span><%=objDish.servings%> People 
-                                  
-                                </span>
+                                <span><%=objDish.servings%> person(s)</span>
                               </li>
-                              
                             </ul>
                           </div>
                       </div>
                       <div class="order-func-container">
-                        <button type="button" class=" btn-post-comment">Add Order</button>
+                        <input type="button" class="button" value="Add Order" />
+                        <div class="price">Price: <label><%=objDish.price%></label></div>
                       </div>
-
                     </div>
-                    
                   </div>
-                  
                   <div class="food-detail-ingredient">
                       <div class="food-detail-ingredient-left">
                         <%if (objNutrition != null && objNutrition.length > 0){%>  
@@ -107,28 +92,14 @@
                               
                         </div>
                           <%}%>
-                        
-                      
-                            
-                            
-                            
                       </div>
                       <div class="food-detail-ingredient-right">
-                          
                       </div>
                   </div>
           </div>
-
-          <br/>
-          <br/>
-          <br/>
-          <br/>
           <hr class="hr-11">
           <div class="comment-section">
-              <nobr><span class="comment-caption">Comments</span><span class="total-comment-label"></span></nobr>
-              <div>
-                  <hr class="common-margin-top" style="height: 1px; width: 100%;"> 
-              </div>
+              <span class="comment-caption">Comments</span><span class="total-comment-label"></span>
               <div class="comment-container">
                   <ul class="comment-list" id = 'commentList'>
                       <%for(let item of objReview){
@@ -147,27 +118,24 @@
                                         <%=item.revDetail%>
                                     </p>
                                  </div>                                  
-                                  
-                                  
                               </div>
                           </li>
-                          <%}%>
-                      
+                      <%}%>
                   </ul>
                   <div class="add-comment-section">
-                      <h3>Add review</h3>
-                      <span class="required-label">Full Name, Email, your Comment are required</span>
+                      <h3>Add comment</h3>
+                      <p class="required-label">Your name, email and comment are required</p>
                       <div class="post-comment">
-                          <input type="text" class="comment-input" name="name" id="commentname" placeholder="Your Full name">
+                          <input type="text" class="comment-input" name="name" id="commentname" placeholder="Your name">
                         
-                          <input type="text" class="comment-input" name="email" id="commentemail" placeholder="Your Email">
+                          <input type="text" class="comment-input" name="email" id="commentemail" placeholder="Your email">
                         
                           <textarea  placeholder="Your comment" name="comment" id="comment"></textarea></textarea>
                           
                       </div>
                       <br/>
                       <div class="comment-func-bar">
-                          <button type="button" class=" btn-post-comment" onclick="postComment('<%=objDish.dishId%>')">Post comment</button>
+                          <button type="button" class="button" onclick="postComment('<%=objDish.dishId%>')">Post Comment</button>
                       </div>
                   </div>
               </div>
