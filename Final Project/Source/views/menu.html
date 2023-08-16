@@ -27,7 +27,7 @@
                 <div class="menu-bar-item" id="<%=item.catId%>">
                     <%=item.catName%>
                 </div>
-                <%}%>
+            <%}%>
         </div>
 
         <div class="food-list-container" id="foodContainer">
@@ -39,7 +39,6 @@
     </footer>
     <script>
         showBadge(items);
-        console.log(items);
         function updateOrder(self, id) {
             if (items.filter(i => i.dishId == id).length == 0) {
                 items.push({ dishId: id, quantity: 1 });
@@ -48,9 +47,8 @@
                 items = items.filter(i => i.dishId != id);
                 $(self).html("Add Order");
             }
-            console.log(items);
             $.post("/order/updateOrder", { orderItems: items }, (data) => {
-                console.log(data);
+                // console.log(data);
             });
             showBadge(items);
         }
