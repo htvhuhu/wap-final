@@ -8,11 +8,18 @@
                 <li><a href="/index" id="index" class="active">Home</a></li>
                 <li><a href="/menu" id="menu">Menu</a></li>
                 <li><a href="/reservation" id="reservation">Reservation</a></li>
-                <li><a href="/order" id="order">Order</a></li>
+                <li><a href="/order" id="order" class="notification">
+                    <span>Order</span>
+                    <span class="badge" style="display: none;"></span></a></li>
             </ul>
         </div>
     </div>
 </div>
+<script src="/js/script.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"></script>
 <script>
         const pathArray = window.location.pathname.split('/');
         const firstLevelPath = pathArray[1];
@@ -23,4 +30,32 @@
         });
 
         document.getElementById(firstLevelPath).classList.add('active');
+
+        var items = <%-JSON.stringify(orderItems)%>;
+        showBadge(items);
+        function showBadge(items){
+            if(Array.isArray(items) && items.length > 0) {
+                $(".notification .badge").show();
+                $(".notification .badge").html(items.length);
+            }else{
+                $(".notification .badge").hide();
+            }
+        }
+            
 </script>
+<style type="text/css">
+    .notification {
+        text-decoration: none;
+        position: relative;
+    }
+
+    .notification .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        background: red;
+        color: white;
+    }
+</style>

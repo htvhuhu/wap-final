@@ -193,7 +193,7 @@
     border: white 1px solid;
     border-radius: 4px!important;
     text-decoration: none;
-    cursor: pointer;
+    cursor: pointer!important;
 }
 
 .food-detail-title{

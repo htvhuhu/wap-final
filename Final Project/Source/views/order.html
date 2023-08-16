@@ -20,95 +20,95 @@
     <div id="order-container">
     <form action="/order/complete" method="post">
         <% let total=0; %>
-        <% if(!Array.isArray(orderItems)) { %>
-            <div style="height: 300px; padding: 50px;">
-                <i><%= orderItems%></i>
-            </div>
-        <% } else {%>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Dish</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <% orderItems.forEach((item, index)=> { %>
-                        <tr id="row-<%= index %>">
-                            <!-- ... (rest of the row structure) ... -->
-                            <!-- Hidden input fields for each row -->
-                            <input type="hidden" name="items[<%= index %>][dishId]" value="<%= item.dishId %>">
-                            <input type="hidden" name="items[<%= index %>][dishName]" value="<%= item.dishName %>">
-                            <input type="hidden" name="items[<%= index %>][quantity]" id="input-quantity-<%= index %>"
-                                value="<%= item.quantity %>">
-                            <input type="hidden" name="items[<%= index %>][price]" value="<%= item.price %>">
-                            <% total +=item.price * item.quantity; %>
-                                <td><img src='<%= item.dishImageURL %>' class="dish-image"></td>
-                                <td>
-                                    <%= item.dishName %>
-                                </td>
-                                <td>
-                                    <button class="button small-btn" onclick="decreaseQuantity(<%= index %>);return false;">-</button>
-                                    <span style="padding: 20px;" id="quantity-<%= index %>">
-                                        <%= item.quantity %>
-                                    </span>
-                                    <button class="button small-btn" onclick="increaseQuantity(<%= index %>);return false;">+</button>
-                                </td>
-                                <td id="price-<%= index %>" class="price"><%= item.price %>
-                                </td>
-                                <td id="total-<%= index %>" class="price"><%= item.price * item.quantity %>
-                                </td>
-                                <td>
-                                    <a onclick="deleteItem(<%= index %>)"><span class="bi bi-trash"></span></a>
-                                </td>
-                        </tr>
-                        <% }); %>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Total Price: <span id="grandTotal"><%= total %></span></th>
+        <div style="height: 300px; padding: 50px;" id="no-items-div">
+            <i>Please select your order!</i>
+        </div>
+        <div  id="has-items-div">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% orderItems.forEach((item, index)=> { %>
+                            <tr id="row-<%= index %>">
+                                <!-- ... (rest of the row structure) ... -->
+                                <!-- Hidden input fields for each row -->
+                                <input type="hidden" name="items[<%= index %>][dishId]" value="<%= item.dishId %>">
+                                <input type="hidden" name="items[<%= index %>][dishName]" value="<%= item.dishName %>">
+                                <input type="hidden" name="items[<%= index %>][quantity]" id="input-quantity-<%= index %>"
+                                    value="<%= item.quantity %>">
+                                <input type="hidden" name="items[<%= index %>][price]" value="<%= item.price %>">
+                                <% total +=item.price * item.quantity; %>
+                                    <td><img src='<%= item.dishImageURL %>' class="dish-image"></td>
+                                    <td>
+                                        <%= item.dishName %>
+                                    </td>
+                                    <td>
+                                        <button class="button small-btn" onclick="decreaseQuantity(<%= index %>);return false;">-</button>
+                                        <span style="padding: 20px;" id="quantity-<%= index %>">
+                                            <%= item.quantity %>
+                                        </span>
+                                        <button class="button small-btn" onclick="increaseQuantity(<%= index %>);return false;">+</button>
+                                    </td>
+                                    <td id="price-<%= index %>" class="price"><%= item.price %>
+                                    </td>
+                                    <td id="total-<%= index %>" class="price"><%= item.price * item.quantity %>
+                                    </td>
+                                    <td>
+                                        <a onclick="deleteItem(<%= index %>,<%=item.dishId%>)"><span class="bi bi-trash"></span></a>
+                                    </td>
                             </tr>
-            </tbody>
-        </table>
-        <!-- Shipment Information -->
-        <div id="shipment-div-container">
-            <div id="shipment-div">
-                <h2>Shipment Information</h2>
-                <label for="name">Name</label>
-                <div>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <label for="address">Address</label>
-                <div>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                <label for="phone">Phone</label>
-                <div>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <input type="hidden" id="grandTotal" name="totalPrice" value="<%= total %>">
-                <label for="email">Email</label>
-                <div>
-                    <input type="email" id="email" name="email" required> <!-- Email input for sending confirmation -->
-                </div>
-                <div>
-                    <input type="submit" value="Complete Order">
+                            <% }); %>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Total Price: <span id="grandTotal"><%= total %></span></th>
+                                </tr>
+                </tbody>
+            </table>
+            <!-- Shipment Information -->
+            <div id="shipment-div-container">
+                <div id="shipment-div">
+                    <h2>Shipment Information</h2>
+                    <label for="name">Name</label>
+                    <div>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <label for="address">Address</label>
+                    <div>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <label for="phone">Phone</label>
+                    <div>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <input type="hidden" id="grandTotal" name="totalPrice" value="<%= total %>">
+                    <label for="email">Email</label>
+                    <div>
+                        <input type="email" id="email" name="email" required> <!-- Email input for sending confirmation -->
+                    </div>
+                    <div>
+                        <input type="submit" value="Complete Order">
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <% } %>
     </div>
     <script>
         var items = <%-JSON.stringify(orderItems)%>;
-        console.log(items);
+        showBadge(items);
+        showTable(items);
 
         function increaseQuantity(index) {
             const quantityElem = document.getElementById(`quantity-${index}`);
@@ -170,17 +170,19 @@
             grandTotalHiddenInput.value = grandTotal.toFixed(2);
         }
 
-        function deleteItem(index) {
+        function deleteItem(index,dishId) {
             // Remove the table row
             const row = document.getElementById(`row-${index}`);
             row.parentNode.removeChild(row);
 
             // Update the hidden input fields
-            items = items.filter((item,idx) => index != idx); 
+            items = items.filter((item) => item.dishId != dishId); 
             $.post("/order/updateOrder",{orderItems:items}, (data)=>{
                 console.log(data);
             });
             updateGrandTotal();
+            showBadge(items);
+            showTable(items);
         }
         function updateOrder(self,id) {
             
@@ -189,6 +191,15 @@
             });
 
             return false;
+        }
+        function showTable(items){
+            if(items.length > 0) {
+                $("#no-items-div").hide();
+                $("#has-items-div").show();
+            }else{
+                $("#no-items-div").show();
+                $("#has-items-div").hide();
+            }
         }
 </script>
     <footer>

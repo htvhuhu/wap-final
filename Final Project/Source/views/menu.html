@@ -52,6 +52,8 @@
         </footer>
         <script>
             var items = <%-JSON.stringify(orderItems)%>;
+            showBadge(items);
+            
             console.log(items);
             function updateOrder(self,id) {
                 if(items.filter(i =>i.dishId == id).length == 0){
@@ -65,9 +67,9 @@
                 $.post("/order/updateOrder",{orderItems:items}, (data)=>{
                     console.log(data);
                 });
+                showBadge(items);
             }
+            
         </script>
     </body>
 </html>
-
-<script src="js/script.js"></script>
