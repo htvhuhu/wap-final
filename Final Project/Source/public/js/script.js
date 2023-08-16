@@ -11,10 +11,8 @@ $(document).ready(function(){
                 $('#foodContainer').html(data);
             }
         });
-
     })
-
-    
+    $('.menu-bar-item#0').click(); // show all dish in the first time.
 })
 
 function postComment(dishId)

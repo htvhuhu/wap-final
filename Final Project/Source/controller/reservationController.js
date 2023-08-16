@@ -17,5 +17,5 @@ module.exports.sendEmail = (req, res, next) => {
         }
         EmailHelper.sendEmail(req.body.cusEmail, 'Reservation Confirmation', data);
     });
-    res.render('reservationComplete', req.body);
+    res.render('reservationComplete', {...req.body,orderItems:req.session.orderItems ?? []});
 };
