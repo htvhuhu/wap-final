@@ -67,14 +67,156 @@ UPDATE `restaurant`.`dish` SET `preprationTime` = '4' WHERE (`dishId` = '11');
 UPDATE `restaurant`.`dish` SET `preprationTime` = '45' WHERE (`dishId` = '12');
 
 
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Calories', '219.9');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Total Fat', '10.7 g');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Saturated Fat', '2.2 g');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Cholesterol', '37.4 mg');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Sodium', '120.3 mg');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Potassium', '32.8 mg');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Total Carbohydrate', '22.3 g');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Sugars', '8.4 g');
-INSERT INTO `restaurant`.`nutrition` (`dishId`, `nutrition`, `value`) VALUES ('1', 'Protein', '7.9 g');
+
+**update nutrition**
+DELETE FROM `restaurant`.`nutrition` where nutId between 0 and 1000000;
+
+INSERT INTO `restaurant`.`nutrition` (`nutId`, `dishId`, `nutrition`, `value`)
+VALUES
+-- Nutrition for Phở
+(1, 1, 'Calories', 219.90),
+(2, 1, 'Total Fat', 10.7),
+(3, 1, 'Saturated Fat', 2.2),
+(4, 1, 'Cholesterol', 37.4),
+(5, 1, 'Sodium', 120.3),
+(6, 1, 'Potassium', 32.8),
+(7, 1, 'Total Carbohydrate', 22.3),
+(8, 1, 'Sugars', 8.4),
+(9, 1, 'Protein', 7.9),
+(10, 1, 'Dietary Fiber', 1.5),
+
+-- Nutrition for Bánh Mì
+(11, 2, 'Calories', 250),
+(12, 2, 'Total Fat', 8),
+(13, 2, 'Saturated Fat', 2),
+(14, 2, 'Cholesterol', 25),
+(15, 2, 'Sodium', 500),
+(16, 2, 'Potassium', 50),
+(17, 2, 'Total Carbohydrate', 30),
+(18, 2, 'Sugars', 5),
+(19, 2, 'Protein', 10),
+(20, 2, 'Dietary Fiber', 2),
+
+-- Nutrition for Gỏi Cuốn
+(21, 3, 'Calories', 150.90),
+(22, 3, 'Total Fat', 5.7),
+(23, 3, 'Saturated Fat', 1.2),
+(24, 3, 'Cholesterol', 20.4),
+(25, 3, 'Sodium', 110.3),
+(26, 3, 'Potassium', 30.8),
+(27, 3, 'Total Carbohydrate', 20.3),
+(28, 3, 'Sugars', 3.4),
+(29, 3, 'Protein', 6.9),
+(30, 3, 'Dietary Fiber', 1.2),
+
+-- Nutrition for Bún Thịt Nướng
+(31, 4, 'Calories', 260),
+(32, 4, 'Total Fat', 9),
+(33, 4, 'Saturated Fat', 2.5),
+(34, 4, 'Cholesterol', 30),
+(35, 4, 'Sodium', 520),
+(36, 4, 'Potassium', 55),
+(37, 4, 'Total Carbohydrate', 32),
+(38, 4, 'Sugars', 6),
+(39, 4, 'Protein', 11),
+(40, 4, 'Dietary Fiber', 2.5),
+
+-- Nutrition for Cà Ri Gà
+(41, 5, 'Calories', 280),
+(42, 5, 'Total Fat', 11),
+(43, 5, 'Saturated Fat', 3),
+(44, 5, 'Cholesterol', 40),
+(45, 5, 'Sodium', 530),
+(46, 5, 'Potassium', 60),
+(47, 5, 'Total Carbohydrate', 34),
+(48, 5, 'Sugars', 7),
+(49, 5, 'Protein', 12),
+(50, 5, 'Dietary Fiber', 3),
+
+-- Nutrition for Bánh Xèo
+(51, 6, 'Calories', 230.90),
+(52, 6, 'Total Fat', 8.7),
+(53, 6, 'Saturated Fat', 1.9),
+(54, 6, 'Cholesterol', 25.4),
+(55, 6, 'Sodium', 210.3),
+(56, 6, 'Potassium', 40.8),
+(57, 6, 'Total Carbohydrate', 28.3),
+(58, 6, 'Sugars', 4.4),
+(59, 6, 'Protein', 7.5),
+(60, 6, 'Dietary Fiber', 1.8),
+
+-- Nutrition for Bún Riêu
+(61, 7, 'Calories', 250),
+(62, 7, 'Total Fat', 9.5),
+(63, 7, 'Saturated Fat', 2.4),
+(64, 7, 'Cholesterol', 30.5),
+(65, 7, 'Sodium', 520.5),
+(66, 7, 'Potassium', 55.5),
+(67, 7, 'Total Carbohydrate', 30.5),
+(68, 7, 'Sugars', 5.5),
+(69, 7, 'Protein', 10.5),
+(70, 7, 'Dietary Fiber', 2.6),
+
+-- Nutrition for Bánh Canh
+(71, 8, 'Calories', 240),
+(72, 8, 'Total Fat', 8.5),
+(73, 8, 'Saturated Fat', 2.3),
+(74, 8, 'Cholesterol', 28.5),
+(75, 8, 'Sodium', 510.5),
+(76, 8, 'Potassium', 50.5),
+(77, 8, 'Total Carbohydrate', 29.5),
+(78, 8, 'Sugars', 4.8),
+(79, 8, 'Protein', 9.5),
+(80, 8, 'Dietary Fiber', 2.4),
+
+-- Nutrition for Hủ Tiếu
+(81, 9, 'Calories', 260),
+(82, 9, 'Total Fat', 10),
+(83, 9, 'Saturated Fat', 2.5),
+(84, 9, 'Cholesterol', 32),
+(85, 9, 'Sodium', 530),
+(86, 9, 'Potassium', 58),
+(87, 9, 'Total Carbohydrate', 31),
+(88, 9, 'Sugars', 5),
+(89, 9, 'Protein', 11),
+(90, 9, 'Dietary Fiber', 2.5),
+-- Nutrition for Chả Giò
+-- Nutrition for Chả Giò
+(91, 10, 'Calories', 240),
+(92, 10, 'Total Fat', 10),
+(93, 10, 'Saturated Fat', 2.8),
+(94, 10, 'Cholesterol', 35),
+(95, 10, 'Sodium', 510),
+(96, 10, 'Potassium', 50),
+(97, 10, 'Total Carbohydrate', 30),
+(98, 10, 'Sugars', 5.5),
+(99, 10, 'Protein', 9),
+(100, 10, 'Dietary Fiber', 2),
+
+-- Nutrition for Hot cafe
+(101, 11, 'Calories', 100),
+(102, 11, 'Total Fat', 2),
+(103, 11, 'Saturated Fat', 0.5),
+(104, 11, 'Cholesterol', 5),
+(105, 11, 'Sodium', 10),
+(106, 11, 'Potassium', 20),
+(107, 11, 'Total Carbohydrate', 20),
+(108, 11, 'Sugars', 10),
+(109, 11, 'Protein', 2),
+(110, 11, 'Dietary Fiber', 0.5),
+
+-- Nutrition for Ice cafe
+(111, 12, 'Calories', 120),
+(112, 12, 'Total Fat', 3),
+(113, 12, 'Saturated Fat', 1),
+(114, 12, 'Cholesterol', 10),
+(115, 12, 'Sodium', 15),
+(116, 12, 'Potassium', 25),
+(117, 12, 'Total Carbohydrate', 25),
+(118, 12, 'Sugars', 15),
+(119, 12, 'Protein', 3),
+(120, 12, 'Dietary Fiber', 1);
+
+
 
 
