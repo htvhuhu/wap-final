@@ -19,10 +19,9 @@ function postComment(dishId)
 {
    
     var name=$('#commentname').val();
-    var email = $('#commentemail').val();
     var comment = $('#comment').val();
 
-    if (name == '' || email == '' || comment == '')
+    if (name == '' || comment == '')
     {
         $('.required-label').show();
         return false;
@@ -34,7 +33,7 @@ function postComment(dishId)
         $.ajax({
             type: "POST",
             url: '/menu/comment',
-            data: JSON.stringify({ name: name, email:email, comment:comment, dishId:dishId}),
+            data: JSON.stringify({ name: name, comment:comment, dishId:dishId}),
             datatype: "html",
             contentType: 'application/json',
             success: function (result) {
@@ -42,7 +41,6 @@ function postComment(dishId)
                 if (result != null) {                    
                     $('#commentList').html(result);
                     $('#commentname').val('');
-                    $('#commentemail').val('');
                     $('#comment').val('');
                 }
 
