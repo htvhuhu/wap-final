@@ -1,5 +1,6 @@
 .img-div {
-    background: url('../images/home-img.webp');
+    background: url('../images/home-img.jpg');
+    background-size: cover;
     height: 300px;
     color: white;
     font-size: 30px;
@@ -14,19 +15,29 @@
 .introduce {
     padding: 50px;
     display: flex;
+    margin: auto;
+    width: 80%;
 }
 .introduce img {
     width: 300px;
 }
 
 .introduce .welcome {
-    padding: 0 40px;
-    width: 50%;
+    padding: 0 100px;
+    width: 60%;
     text-align: center;
+}
+.introduce .welcome p {
+    text-align: justify;
+    margin: 10px 0;
 }
 .opening-hours .text {
     border-bottom: 1px dashed rgba(207,166,113,0.5);
-    padding-bottom: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+.opening-hours ul {
+    margin-left: 15px;
 }
 .opening-hours li {
     padding: 10px;

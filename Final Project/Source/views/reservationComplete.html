@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - Complete</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/reservation.css"/>
+</head>
+<body>
+    <header>
+        <%- include('./header.html') %>
+    </header>
+    <div class="img-div">
+        <h3>Thank you for your reservation.</h3>
+    </div>
+    <div class="center">
+        <h1 style="text-align:center;margin-top:15px;">Reservation Detail</h1>
+        <div class="res-detail">
+            <div class="left">
+                <div>Your name: </div>
+                <div>Your phone: </div>
+                <div>Your email: </div>
+                <div>Reservation date: </div>
+                <div>No of person: </div>
+            </div>
+            <div class="right">
+                <div><%=cusName%></div>
+                <div><%=cusPhone%></div>
+                <div><%=cusEmail%></div>
+                <div><%=resDate + ' ' + resTime %></div>
+                <div><%=noOfPerson%></div>
+            </div>
+        </div>
+        <h3 style="text-align:center;margin-bottom:15px;">Please contact us if there is any changes.</h1>
+    </div>
+    
+    <footer>
+        <%- include('./footer.html') %>
+    </footer>
+</body>
+</html>

@@ -10,13 +10,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/home.css"/>
     <style>
-        body {
-            padding: 2rem;
-            font-family: Arial, sans-serif;
-        }
-
-        h1,
-        h2 {
+        h1, h2 {
             font-weight: bold;
         }
 
@@ -37,12 +31,10 @@
         <%- include('./header.html') %>
     </header>
     <div class="container" id="order-container">
-        <h1>Order Confirmation</h1>
-        <p>Thank you for your order, <strong>
-                <%= ordName %>
-            </strong>!</p>
-
-        <h2>Order Details</h2>
+        <h3>Thank you for your order, <strong><%= ordName %></strong>!</h3>
+        <br/>
+        <h2>Order Detail</h2>
+        <h5>Order ID: <%=ordId%></h5>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -53,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% orderItems.forEach(item=> { %>
+                <% items.forEach(item=> { %>
                     <tr>
                         <td>
                             <%= item.dishName %>
@@ -61,18 +53,16 @@
                         <td>
                             <%= item.quantity %>
                         </td>
-                        <td>
-                            <%= item.price %>
+                        <td class="price"><%= item.price %>
                         </td>
-                        <td>
-                            <%= item.price * item.quantity %>
+                        <td class="price"><%= item.price * item.quantity %>
                         </td>
                     </tr>
                     <% }); %>
             </tbody>
         </table>
-        <p><strong>Total Price:</strong>
-            <%= totalPrice %>
+        <p><strong>Total Price:
+            <span id="grandTotal" class="price"><%= totalPrice %></span></strong>
         </p>
         <p><strong>Shipping Address:</strong>
             <%= ordAddress %>

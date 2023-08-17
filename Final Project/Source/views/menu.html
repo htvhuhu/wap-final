@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <%- include('./header.html') %>
+    </header>
+    <div class="menu-breadcrumb-container">
+        <div class="menu-breadcrumb-title menu-breadcrumb">
+            <div class="menu-breadcrumb-title-text">
+                <h1>Special Menu</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="menu-bar ">
+            <div class="menu-bar-item menu-bar-item-active" id="0">
+                All
+            </div>
+            <%for(let item of objCategories){%>
+                <div class="menu-bar-item" id="<%=item.catId%>">
+                    <%=item.catName%>
+                </div>
+            <%}%>
+        </div>
+
+        <div class="food-list-container" id="foodContainer">
+            <!-- partial dish load here -->
+        </div>
+    </div>
+    <footer>
+        <%- include('./footer.html') %>
+    </footer>
+    <script>
+        showBadge(items);
+        function updateOrder(self, id) {
+            if (items.filter(i => i.dishId == id).length == 0) {
+                items.push({ dishId: id, quantity: 1 });
+                $(self).html("Remove Order");
+            } else {
+                items = items.filter(i => i.dishId != id);
+                $(self).html("Add Order");
+            }
+            $.post("/order/updateOrder", { orderItems: items }, (data) => {
+                // console.log(data);
+            });
+            showBadge(items);
+        }
+
+    </script>
+</body>
+
+</html>

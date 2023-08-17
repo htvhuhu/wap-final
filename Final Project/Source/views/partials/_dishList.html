@@ -1,0 +1,14 @@
+<%for(let item of objDish) {%>
+    <div class="food-item">
+        <img src="<%=item.dishImageURL%>">
+        <div class="food-item-desc">
+            <h4><%=item.dishName%></h4>
+            <p><%=item.description%></p>
+            <h5>$<%=item.price%></h5>
+            <div class="food-item-desc-func">
+                <a id="removeOrder" onclick="updateOrder(this,<%=item.dishId%>)" ><%= orderItems.filter(o=>o.dishId == item.dishId).length > 0 ? "Remove Order" : "Add Order" %></a>                    
+                <a href="/menu/dish/<%=item.dishId%>">View Detail</a>
+            </div>
+        </div>
+    </div>
+<%}%>  

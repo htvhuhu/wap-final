@@ -7,7 +7,8 @@
     <title>Your Order Confirmation</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <style>
-        h1, h2 {
+        h1,
+        h2 {
             font-weight: bold;
         }
 
@@ -29,17 +30,27 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        .price {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .price label::before {
+            content: '$';
+        }
     </style>
 </head>
 
 <body>
     <div class="container" id="order-container">
-        <h1>Order Confirmation</h1>
-        <p>Thank you for your order, <strong>
+        <h3>Thank you for your order, <strong>
                 <%= ordName %>
-            </strong>!</p>
-
-        <h2>Order Details</h2>
+            </strong>!</h3>
+        <br />
+        <h2>Order Detail</h2>
+        <h5>Order ID: <%=ordId%>
+        </h5>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -50,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% orderItems.forEach(item=> { %>
+                <% items.forEach(item=> { %>
                     <tr>
                         <td>
                             <%= item.dishName %>
@@ -58,18 +69,18 @@
                         <td>
                             <%= item.quantity %>
                         </td>
-                        <td>
-                            <%= item.price %>
+                        <td class="price">
+                            $<%= item.price %>
                         </td>
-                        <td>
-                            <%= item.price * item.quantity %>
+                        <td class="price">
+                            $<%= item.price * item.quantity %>
                         </td>
                     </tr>
                     <% }); %>
             </tbody>
         </table>
-        <p><strong>Total Price:</strong>
-            <%= totalPrice %>
+        <p class="price"><strong>Total Price:</strong>
+            $<%= totalPrice %>
         </p>
         <p><strong>Shipping Address:</strong>
             <%= ordAddress %>

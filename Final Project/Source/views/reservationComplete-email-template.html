@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - Complete</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/reservation.css"/>
+</head>
+<body>
+    <div class="img-div">
+        <h3>Thank you for your reservation.</h3>
+    </div>
+    <div class="center">
+        <h1>Reservation Detail</h1>
+        <div class="res-detail">
+            <div class="left">
+                <div>Your name: <%=cusName%></div>
+                <div>Your phone: <%=cusPhone%></div>
+                <div>Your email: <%=cusEmail%></div>
+                <div>Reservation date: <%=resDate + ' ' + resTime %></div>
+                <div>No of person: <%=noOfPerson%></div>
+            </div>
+        </div>
+        <h3>Please contact us if there is any changes.</h1>
+    </div>
+</body>
+</html>

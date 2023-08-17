@@ -10,7 +10,7 @@ const app = express();
 const session = require('express-session');
 app.use(session({
     secret: 'your_secret_key',  // This should be a long random string
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: { secure: false }  // Set to true if using HTTPS
 }));
@@ -49,4 +49,12 @@ app.use('/reservation', reservationRouter);
 
 app.listen(port, function() {
     console.log('Server is starting at', port);
+});
+
+app.use((req, res, next) => {
+    res.render('404', {orderItems:[]});
+});
+
+app.use((err, req, res, next) => {
+    res.render('error', {errorMsg: err.message, orderItems:[]});
 });
