@@ -124,6 +124,7 @@ body {
 
 .error-div {
     background: url('../images/home-img.jpg');
+    background-size: cover;
     height: 500px;
     color: white;
     font-size: 30px;
