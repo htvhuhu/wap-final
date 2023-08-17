@@ -1,5 +1,5 @@
 .img-div {
-    background: url('../images/home-img.webp');
+    background: url('../images/home-img.jpg');
     height: 300px;
     color: white;
     font-size: 30px;
@@ -26,10 +26,17 @@
     width: 60%;
     text-align: center;
 }
+.introduce .welcome p {
+    text-align: justify;
+    margin: 10px 0;
+}
 .opening-hours .text {
     border-bottom: 1px dashed rgba(207,166,113,0.5);
     text-align: right;
     font-weight: bold;
+}
+.opening-hours ul {
+    margin-left: 15px;
 }
 .opening-hours li {
     padding: 10px;
