@@ -25,7 +25,6 @@ class DateTimeHelper {
   static createDate(date, time) {
     let dateArr = date.split('/');
     let timeArr = time.split(':');
-    console.log(dateArr, timeArr);
     let newDate = new Date(dateArr[2], parseInt(dateArr[0])-1, dateArr[1], timeArr[0], timeArr[1], 0);
     return this.formatDate(newDate, 'yyyy-MM-dd hh:mm:ss');
   }

@@ -82,20 +82,20 @@
                     <h2>Shipment Information</h2>
                     <label for="name">Name</label>
                     <div>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" required maxlength="45" >
                     </div>
                     <label for="address">Address</label>
                     <div>
-                        <input type="text" id="address" name="address" required>
+                        <input type="text" id="address" name="address" required maxlength="100">
                     </div>
                     <label for="phone">Phone</label>
                     <div>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" required maxlength="15">
                     </div>
                     <input type="hidden" id="grandTotal" name="totalPrice" value="<%= total %>">
                     <label for="email">Email</label>
                     <div>
-                        <input type="email" id="email" name="email" required> <!-- Email input for sending confirmation -->
+                        <input type="email" id="email" name="email" required maxlength="45"> <!-- Email input for sending confirmation -->
                     </div>
                     <div>
                         <input type="submit" onclick="completeOrder()" value="Complete Order">

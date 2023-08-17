@@ -117,14 +117,10 @@
                   </ul>
                   <div class="add-comment-section">
                       <h3>Add comment</h3>
-                      <p class="required-label">Your name, email and comment are required</p>
+                      <p class="required-label">Your name and comment are required</p>
                       <div class="post-comment">
-                          <input type="text" class="comment-input" name="name" id="commentname" placeholder="Your name">
-                        
-                          <input type="email" class="comment-input" name="email" id="commentemail" placeholder="Your email">
-                        
-                          <textarea  placeholder="Your comment" name="comment" id="comment"></textarea></textarea>
-                          
+                          <input type="text" class="comment-input" name="name" id="commentname" placeholder="Your name" maxlength="45">
+                          <textarea  placeholder="Your comment" name="comment" id="comment" maxlength="500"></textarea>
                       </div>
                       <br/>
                       <div class="comment-func-bar">
@@ -139,7 +135,6 @@
             <%- include('./footer.html') %>
         </footer>
         <script>
-            console.log(items);
             function updateOrder(self,id) {
             if(items.filter(i =>i.dishId == id).length == 0){
                 items.push({dishId:id,quantity:1});
@@ -150,7 +145,7 @@
             }
             console.log(items);
             $.post("/order/updateOrder",{orderItems:items}, (data)=>{
-                console.log(data);
+                // console.log(data);
             });
             showBadge(items);
         }

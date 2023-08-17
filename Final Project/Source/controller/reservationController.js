@@ -11,11 +11,13 @@ module.exports.saveReservation = (req, res, next) => {
 };
 
 module.exports.sendEmail = (req, res, next) => {
-    ejs.renderFile(__dirname + "/.." + "/views/reservationComplete-email-template.html", req.body, function (err, data) {
-        if (err) {
-            throw err;
-        }
-        EmailHelper.sendEmail(req.body.cusEmail, 'Reservation Confirmation', data);
-    });
+    if (req.body.cusEmail.trim()!='') {
+        ejs.renderFile(__dirname + "/.." + "/views/reservationComplete-email-template.html", req.body, function (err, data) {
+            if (err) {
+                throw err;
+            }
+            EmailHelper.sendEmail(req.body.cusEmail, 'Reservation Confirmation', data);
+        });
+    }
     res.render('reservationComplete', { ...req.body, orderItems: req.session.orderItems ?? [] });
 };
