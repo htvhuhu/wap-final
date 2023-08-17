@@ -121,17 +121,25 @@ body {
     transition: all 0.5s ease-in-out;
     border-radius: 4px;
 }
+
 .error-div {
-    background-color: lightcoral;
-    min-height: 300px;
+    background: url('../images/home-img.jpg');
+    background-size: cover;
+    height: 500px;
+    color: white;
+    font-size: 30px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid white;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
 }
-.error {
-    font-size: 20px;
-    font-weight: bold;
+
+.error-div p {
+    font-size: 40px;
 }
 
 /* jQuery date picker customization */

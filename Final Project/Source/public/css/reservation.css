@@ -1,5 +1,6 @@
 .img-div {
     background: url('../images/reservation-img.webp');
+    background-size: cover;
     height: 300px;
     color: white;
     font-size: 30px;
