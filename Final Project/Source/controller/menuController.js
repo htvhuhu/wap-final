@@ -11,7 +11,7 @@ module.exports.showMenu = async (req, res, next) => {
         res.render('menu', { objCategories: menu, objDish: dishes, orderItems: orderItems });
     }
     catch (error) {
-        throw error;
+        next(error);
     }
 }
 
@@ -35,7 +35,7 @@ module.exports.loadDishDetail = async (req, res, next) => {
         res.render("dish", { objDish: dish, ingredients: objingredient, objReview: reviews, objNutrition: nutrition, orderItems: orderItems });
 
     } catch (error) {
-        throw error;
+        next(error);
     }
 }
 
@@ -51,7 +51,7 @@ module.exports.loadDishByCategoryId = async (req, res, next) => {
         res.render("partials/_dishList", { objDish: dishes, orderItems: orderItems })
 
     } catch (error) {
-        throw error;
+        next(error);
     }
 }
 
@@ -69,6 +69,6 @@ module.exports.addComment = async (req, res, next) => {
         res.render("partials/_menuComment", { objReview: reviews })
 
     } catch (error) {
-        throw error;
+        next(error);
     }
 }
