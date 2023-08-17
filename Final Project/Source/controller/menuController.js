@@ -18,7 +18,7 @@ module.exports.showMenu = async (req, res, next) => {
 module.exports.loadDishDetail = async (req, res, next) => {
     var id = req.params.id;
     try {
-        let arrDish = await await menuModel.getDishById(id);
+        let arrDish =  await menuModel.getDishById(id);
         let dish = arrDish[0];
 
         let reviews = await menuModel.getReviews(id);
