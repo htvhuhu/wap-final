@@ -51,6 +51,10 @@ app.listen(port, function() {
     console.log('Server is starting at', port);
 });
 
+app.use((req, res, next) => {
+    res.render('404', {orderItems:[]});
+});
+
 app.use((err, req, res, next) => {
-    res.render('error', {errorMsg: err.message});
+    res.render('error', {errorMsg: err.message, orderItems:[]});
 });
